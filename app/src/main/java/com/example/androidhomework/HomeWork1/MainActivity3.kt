@@ -25,6 +25,5 @@ class MainActivity3 : AppCompatActivity() {
 
     override fun onBackPressed() {
         finishAffinity();
-        System.exit(0)
     }
 }

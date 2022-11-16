@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">AndroidHomeWork</string>
     <string name="button">Button</string>
+    <string name="close_app">Close app</string>
+    <string name="go_activity_3">Go activity 3</string>
+    <string name="go_activity_2">Go activity 2</string>
+    <string name="go_activity_4">Go activity 4</string>
+    <string name="secondLevel">You are on the second level</string>
+    <string name="PlayGame">The game has begun!!!</string>
+    <string name="clickedSecondItem">Clicked second item</string>
+    <string name="firstKey">First key</string>
+    <string name="secondKey">Second key</string>
+    <string name="treeKey">Tree key</string>
+    <string name="noDate">NULL</string>
+    <string name="go_to_the_next_level_2">Go to the next level 2</string>
+    <string name="welcome_human">Welcome human!!!</string>
+    <string name="go_to_the_next_level_3">Go to the next level 3</string>
+    <string name="go_to_activity_4">Go to activity 4</string>
+    <string name="activity_3">Activity 3</string>
 </resources>
