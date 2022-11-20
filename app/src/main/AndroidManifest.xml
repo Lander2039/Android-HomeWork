@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeWork1.MainActivity"
+                        android:name=".HomeWork1.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidHomeWork</string>
+    <string name="app_name">Samurai</string>
     <string name="button">Button</string>
     <string name="close_app">Close app</string>
     <string name="go_activity_3">Go activity 3</string>
@@ -12,9 +12,21 @@
     <string name="secondKey">Second key</string>
     <string name="treeKey">Tree key</string>
     <string name="noDate">NULL</string>
-    <string name="go_to_the_next_level_2">Go to the next level 2</string>
+    <string name="go_to_the_next_level_2">Log IN</string>
     <string name="welcome_human">Welcome human!!!</string>
     <string name="go_to_the_next_level_3">Go to the next level 3</string>
-    <string name="go_to_activity_4">Go to activity 4</string>
+    <string     name="go_to_activity_4">Go to activity 4</string>
     <string name="activity_3">Activity 3</string>
+    <string name="registration">Registration</string>
+    <string name="Confirm">Confirmation of entered data.</string>
+    <string name="yes">Yes</string>
+    <string name="loginProgress">Login in progress</string>
+    <string name="no">No</string>
+    <string name="LoginIncorrectly">Login entered incorrectly</string>
+    <string name="PasswordEnteredIncorrectly">Password entered incorrectly</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="todo">TODO</string>
+    <string name="activity_4">Activity 4</string>
 </resources>

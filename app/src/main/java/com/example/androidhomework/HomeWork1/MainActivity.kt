@@ -16,11 +16,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val button = findViewById<Button>(R.id.button)
+        val btnLogin = findViewById<Button>(R.id.button)
 
-        button.setOnClickListener {
-            startActivity(Intent("com.example.androidhomework.HomeWork1.OPEN_ACTIVITY2"))
+        val btnRegistration = findViewById<Button>(R.id.btnRegistration)
+
+        btnLogin.setOnClickListener {
+            startActivity(Intent(this, MainActivity3::class.java))
         }
+
+        btnRegistration.setOnClickListener {
+            startActivity(Intent(this, MainActivity4::class.java))
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

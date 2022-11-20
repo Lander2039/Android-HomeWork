@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="go_activity_2">go_activity_2</string>
+    <string name="LoginIncorrectly">Login entered incorrectly</string>
+    <string name="PasswordEnteredIncorrectly">Password entered incorrectly</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="todo">TODO</string>
+    <string name="activity_4">Activity 4</string>
 </resources>
