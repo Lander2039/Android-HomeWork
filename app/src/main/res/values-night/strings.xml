@@ -8,4 +8,11 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="todo">TODO</string>
     <string name="activity_4">Activity 4</string>
+    <string name="registration4">Registration</string>
+    <string name="enter_your_login">Enter your login</string>
+    <string name="register">Register</string>
+    <string name="choose_an_icon">Choose an icon</string>
+    <string name="todo2">TODO</string>
+    <string name="option_2">Option 2</string>
+    <string name="todo23">TODO</string>
 </resources>

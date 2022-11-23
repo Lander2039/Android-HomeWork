@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlin.system.exitProcess
 
 class MainActivity3 : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)

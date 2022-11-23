@@ -15,7 +15,7 @@
     <string name="go_to_the_next_level_2">Log IN</string>
     <string name="welcome_human">Welcome human!!!</string>
     <string name="go_to_the_next_level_3">Go to the next level 3</string>
-    <string     name="go_to_activity_4">Go to activity 4</string>
+    <string name="go_to_activity_4">Go to activity 4</string>
     <string name="activity_3">Activity 3</string>
     <string name="registration">Registration</string>
     <string name="Confirm">Confirmation of entered data.</string>
@@ -29,4 +29,14 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="todo">TODO</string>
     <string name="activity_4">Activity 4</string>
+    <string name="registration4">Registration</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="enter_your_login">Enter your login</string>
+    <string name="repeat_the_entered_password">Repeat the entered password</string>
+    <string name="register">Register</string>
+    <string name="choose_an_icon">Choose an icon</string>
+    <string name="option_1">Option 1</string>
+    <string name="todo2">TODO</string>
+    <string name="option_2">Option 2</string>
+    <string name="todo23">TODO</string>
 </resources>
