@@ -6,49 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".HomeWork1.MainActivity">
+    tools:context=".HomeWork1.MainActivity"
+    >
 
+    <androidx.fragment.app.FragmentContainerView
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="162dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/black"
-        android:text="@string/go_to_the_next_level_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnRegistration"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.523" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRegistration"
-        android:layout_width="162dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/registration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.523" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_container"/>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView2"
-        android:layout_width="317dp"
-        android:layout_height="394dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/samurai" />
-
+        app:srcCompat="@drawable/samurai"
+        android:alpha="0.1"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

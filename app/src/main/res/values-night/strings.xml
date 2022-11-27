@@ -15,4 +15,9 @@
     <string name="todo2">TODO</string>
     <string name="option_2">Option 2</string>
     <string name="todo23">TODO</string>
+    <string name="PasswordsDoNotMatch">Passwords do not match</string>
+    <string name="EmailEnteredIncorrectly">Email entered incorrectly</string>
+    <string name="invalidEmail">Invalid email</string>
+    <string name="armor_samurai">Armor samurai</string>
+    <string name="weapon_samurai">Weapon samurai</string>
 </resources>

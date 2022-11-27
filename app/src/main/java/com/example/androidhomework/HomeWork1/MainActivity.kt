@@ -1,13 +1,11 @@
 package com.example.androidhomework.HomeWork1
 
 import android.annotation.SuppressLint
-import android.content.Intent
+
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
+
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidhomework.HomeWork1.MainActivity2.Companion.startMainActivity2
+
 import com.example.androidhomework.R
 
 class MainActivity : AppCompatActivity() {
@@ -16,44 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnLogin = findViewById<Button>(R.id.button)
-
-        val btnRegistration = findViewById<Button>(R.id.btnRegistration)
-
-        btnLogin.setOnClickListener {
-            startActivity(Intent(this, MainActivity3::class.java))
-        }
-
-        btnRegistration.setOnClickListener {
-            startActivity(Intent(this, MainActivity4::class.java))
-        }
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.activity_container, LoginFragment())
+        fragmentTransaction.commit()
 
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.go_Activity2) {
-            startMainActivity2(
-                this,
-                getString(R.string.secondLevel),
-                getString(R.string.PlayGame),
-                getString(R.string.clickedSecondItem)
-            )
-        }
-        if (item.itemId == R.id.close) {
-            finishAffinity()
-        }
-        if (item.itemId == R.id.go_Activity3) {
-            startActivity(Intent(this, MainActivity3::class.java))
-        }
-        if (item.itemId == R.id.go_Activity4) {
-            startActivity(Intent(this, MainActivity4::class.java))
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
 }
