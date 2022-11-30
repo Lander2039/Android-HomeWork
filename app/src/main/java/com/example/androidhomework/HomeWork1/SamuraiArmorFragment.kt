@@ -5,56 +5,91 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.androidhomework.HomeWork1.Adapter.ArmorAdapter
+import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.Listener.ItemsListener
 import com.example.androidhomework.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SamuraiArmorFragment : Fragment(), ItemsListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SamuraiArmorFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SamuraiArmorFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var armorAdapter:ArmorAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_samurai_armor, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SamuraiArmorFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SamuraiArmorFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+
+        armorAdapter = ArmorAdapter(this)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.resView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = armorAdapter
+
+        val listArmor = mutableListOf(
+            ItemsArmor(R.drawable.kabuto,
+            "Kabuto",
+            "Helmet",
+                R.drawable.change),
+            ItemsArmor(R.drawable.kasudzuri,
+                "Kusazuri",
+                "Plate skirt",
+                R.drawable.change),
+            ItemsArmor(R.drawable.suneate,
+                "Suneate",
+                "Leggings",
+                R.drawable.change),
+            ItemsArmor(R.drawable.kogake,
+                "Kogake",
+                "Plate shoes",
+                R.drawable.change),
+            ItemsArmor(R.drawable.sode,
+                "Sode",
+                "Shoulder pads",
+                R.drawable.change),
+            ItemsArmor(R.drawable.kote,
+                "Kote",
+                "Bracers",
+                R.drawable.change),
+            ItemsArmor(R.drawable.tehkko,
+                "Tekko",
+                "Mittens and gloves",
+                R.drawable.change),
+            ItemsArmor(R.drawable.kuvagata,
+                "Kuvagata",
+                "Horns",
+                R.drawable.change),
+            ItemsArmor(R.drawable.mengu,
+                "Mengu",
+                "Mask",
+                R.drawable.change),
+        )
+        armorAdapter.submitList(listArmor)
+    }
+
+    override fun onClick() {
+
+    }
+
+    override fun onElementSelected(name: String, date: String, imageView: Int) {
+        val infoArmorFragment = InfoArmorFragment()
+        val bundle = Bundle()
+        bundle.putString("name", name)
+        bundle.putString("date", date)
+        bundle.putInt("imageView", imageView)
+        infoArmorFragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.activity_container, infoArmorFragment)
+            .addToBackStack("Details")
+            .commit()
     }
 }

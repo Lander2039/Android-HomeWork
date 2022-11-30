@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.androidhomework.R
@@ -24,29 +25,34 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnArmor = view.findViewById<Button>(R.id.btnArmor)
-        val btnWeapon = view.findViewById<Button>(R.id.btnWeapon)
 
-        val fragmentTransaction = parentFragmentManager.beginTransaction()
+        val imageButtonArmor = view.findViewById<ImageButton>(R.id.imageButton)
+        val imageButtonWeapon = view.findViewById<ImageButton>(R.id.imageButton2)
 
 
-        val dialog = AlertDialog.Builder(requireActivity())
-            .setTitle("Wonderful!!!")
-            .setMessage("Congratulations on your successful registration.")
-            .setCancelable(false)
-            .setPositiveButton("Continue"){dialog, _ ->
-                Toast.makeText(requireActivity(),"Let's continue", Toast.LENGTH_SHORT).show()
-                dialog.cancel()
-            }
-        dialog.show()
+//        val dialog = AlertDialog.Builder(requireActivity())
+//            .setTitle("Wonderful!!!")
+//            .setMessage("Congratulations on your successful registration.")
+//            .setCancelable(false)
+//            .setPositiveButton("Continue"){dialog, _ ->
+//                Toast.makeText(requireActivity(),"Let's continue", Toast.LENGTH_SHORT).show()
+//                dialog.cancel()
+//            }
+//        dialog.show()
 
-        btnArmor.setOnClickListener {
-            fragmentTransaction.add(R.id.activity_container2, SamuraiArmorFragment())
-            fragmentTransaction.commit()
+        imageButtonArmor.setOnClickListener {
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, SamuraiArmorFragment())
+                .addToBackStack("MainScreen")
+                .commit()
         }
-        btnWeapon.setOnClickListener {
-            fragmentTransaction.add(R.id.activity_container2, SamuraiWeaponFragment())
-            fragmentTransaction.commit()
+        imageButtonWeapon.setOnClickListener {
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, SamuraiWeaponFragment())
+                .addToBackStack("MainScreen2")
+                .commit()
         }
 
     }
