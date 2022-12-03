@@ -11,10 +11,13 @@ import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.viewModels
 import com.example.androidhomework.R
 import com.google.android.material.textfield.TextInputLayout
 
 class RegistrationFragment : Fragment() {
+
+    private val viewModel: RegistrationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +29,8 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnRegistration = view.findViewById<Button>(R.id.btnRegistration)
 
+        val btnRegistration = view.findViewById<Button>(R.id.btnRegistration)
 
         val editTextEmail = view.findViewById<EditText>(R.id.etTextEmail)
         val editTextLogin = view.findViewById<EditText>(R.id.etTextLogin)
@@ -44,6 +47,11 @@ class RegistrationFragment : Fragment() {
 
         var textView3 = view.findViewById<TextView>(R.id.textView3)
         var textView4 = view.findViewById<TextView>(R.id.textView4)
+
+        viewModel.radioButtonState.observe(viewLifecycleOwner){
+            rb1.isChecked = it.firstButtonChecked
+            rb2.isChecked = it.secondButtonChecked
+        }
 
         btnRegistration.setOnClickListener {
             if (editTextEmail.text.toString().isEmpty()) {
@@ -66,19 +74,11 @@ class RegistrationFragment : Fragment() {
         }
 
         rb1.setOnClickListener {
-            if (rb1.isChecked) {
-                rb2.isChecked = false
-            } else {
-                rb1.isChecked = true
-            }
+                viewModel.changeRadioButtonState(true,false)
         }
 
         rb2.setOnClickListener {
-            if (rb2.isChecked) {
-                rb1.isChecked = false
-            } else {
-                rb2.isChecked = true
-            }
+            viewModel.changeRadioButtonState(false,true)
         }
     }
     }

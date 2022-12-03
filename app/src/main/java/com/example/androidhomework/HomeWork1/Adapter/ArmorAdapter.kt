@@ -11,9 +11,9 @@ class ArmorAdapter(
     private val itemsListener: ItemsListener
 ): RecyclerView.Adapter<ArmorVIewHolder>(){
 
-    private var listArmor = mutableListOf<ItemsArmor>()
+    private var listArmor = listOf<ItemsArmor>()
 
-    fun submitList (list: MutableList<ItemsArmor>){
+    fun submitList (list: List<ItemsArmor>){
         this.listArmor = list
     }
 

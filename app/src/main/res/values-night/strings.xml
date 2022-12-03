@@ -20,4 +20,6 @@
     <string name="invalidEmail">Invalid email</string>
     <string name="armor_samurai">Armor samurai</string>
     <string name="weapon_samurai">Weapon samurai</string>
+    <string name="details">Details</string>
+    <string name="Wonderful">Wonderful!!!</string>
 </resources>

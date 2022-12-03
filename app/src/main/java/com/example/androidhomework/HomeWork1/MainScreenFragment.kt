@@ -30,28 +30,28 @@ class MainScreenFragment : Fragment() {
         val imageButtonWeapon = view.findViewById<ImageButton>(R.id.imageButton2)
 
 
-//        val dialog = AlertDialog.Builder(requireActivity())
-//            .setTitle("Wonderful!!!")
-//            .setMessage("Congratulations on your successful registration.")
-//            .setCancelable(false)
-//            .setPositiveButton("Continue"){dialog, _ ->
-//                Toast.makeText(requireActivity(),"Let's continue", Toast.LENGTH_SHORT).show()
-//                dialog.cancel()
-//            }
-//        dialog.show()
+        val dialog = AlertDialog.Builder(requireActivity())
+            .setTitle(getString(R.string.Wonderful))
+            .setMessage(getString(R.string.Congratulations))
+            .setCancelable(false)
+            .setPositiveButton("Continue"){dialog, _ ->
+                Toast.makeText(requireActivity(),"Let's continue", Toast.LENGTH_SHORT).show()
+                dialog.cancel()
+            }
+        dialog.show()
 
         imageButtonArmor.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, SamuraiArmorFragment())
-                .addToBackStack("MainScreen")
+                .addToBackStack(mainScreen)
                 .commit()
         }
         imageButtonWeapon.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, SamuraiWeaponFragment())
-                .addToBackStack("MainScreen2")
+                .addToBackStack(mainScreen)
                 .commit()
         }
 

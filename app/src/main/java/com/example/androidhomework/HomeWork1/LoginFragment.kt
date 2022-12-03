@@ -53,7 +53,7 @@ class LoginFragment : Fragment() {
         btnRegistrationScreen.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
-                .add(R.id.activity_container, RegistrationFragment())
+                .replace(R.id.activity_container, RegistrationFragment())
                 .commit()
         }
     }

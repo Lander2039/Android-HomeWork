@@ -25,8 +25,7 @@ class ArmorVIewHolder(
         change.setBackgroundResource(itemsArmor.change)
 
         change.setOnClickListener {
-            itemsListener.onClick(
-                itemsArmor.change)
+
         }
         itemView.setOnClickListener {
             itemsListener.onElementSelected(
