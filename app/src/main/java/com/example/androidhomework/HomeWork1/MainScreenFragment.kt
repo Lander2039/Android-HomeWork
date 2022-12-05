@@ -10,10 +10,13 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.viewModels
 import com.example.androidhomework.R
 
 
 class MainScreenFragment : Fragment() {
+
+    private val viewModel: MainScreenViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,29 +33,40 @@ class MainScreenFragment : Fragment() {
         val imageButtonWeapon = view.findViewById<ImageButton>(R.id.imageButton2)
 
 
-        val dialog = AlertDialog.Builder(requireActivity())
-            .setTitle(getString(R.string.Wonderful))
-            .setMessage(getString(R.string.Congratulations))
-            .setCancelable(false)
-            .setPositiveButton("Continue"){dialog, _ ->
-                Toast.makeText(requireActivity(),"Let's continue", Toast.LENGTH_SHORT).show()
-                dialog.cancel()
-            }
-        dialog.show()
+        viewModel.openDialog()
+        viewModel.msg.observe(viewLifecycleOwner){msg->
+            val dialog = AlertDialog.Builder(requireActivity())
+                .setTitle(getString(R.string.Wonderful))
+                .setMessage(getString(R.string.Congratulations))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.continueDialog)){ dialog, _ ->
+                    Toast.makeText(requireActivity(),msg, Toast.LENGTH_SHORT).show()
+                    dialog.cancel()
+                }
+            dialog.show()
+        }
 
-        imageButtonArmor.setOnClickListener {
+        viewModel.mains.observe(viewLifecycleOwner){ maims ->
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, SamuraiArmorFragment())
-                .addToBackStack(mainScreen)
+                .addToBackStack(maims)
                 .commit()
         }
-        imageButtonWeapon.setOnClickListener {
+
+        viewModel.mains.observe(viewLifecycleOwner){ mains ->
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, SamuraiWeaponFragment())
-                .addToBackStack(mainScreen)
+                .addToBackStack(mains)
                 .commit()
+        }
+
+        imageButtonArmor.setOnClickListener {
+            viewModel.openFragment()
+        }
+        imageButtonWeapon.setOnClickListener {
+            viewModel.openFragment()
         }
 
     }

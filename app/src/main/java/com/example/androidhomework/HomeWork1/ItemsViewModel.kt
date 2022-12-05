@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
 import com.example.androidhomework.R
 
-const val keyName: String = "name"
-const val keyDate: String = "date"
-const val keyImageView: String = "imageView"
-const val samuraiArmorFragment: String = "SamuraiArmorFragment"
+const val imageViewClicked: String = "ImageView clicked"
 
 class ItemsViewModel : ViewModel() {
 
@@ -83,7 +80,7 @@ class ItemsViewModel : ViewModel() {
     }
 
     fun imageViewClicked() {
-        _msg.value = "ImageView clicked"
+        _msg.value = imageViewClicked
     }
 
     fun elementClicked(name: String, date: String, imageView: Int) {

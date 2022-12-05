@@ -13,6 +13,11 @@ import com.example.androidhomework.HomeWork1.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.Listener.ItemsListener
 import com.example.androidhomework.R
 
+const val keyName: String = "name"
+const val keyDate: String = "date"
+const val keyImageView: String = "imageView"
+const val samuraiArmorFragment: String = "SamuraiArmorFragment"
+
 class SamuraiArmorFragment : Fragment(), ItemsListener {
 
     private lateinit var armorAdapter: ArmorAdapter

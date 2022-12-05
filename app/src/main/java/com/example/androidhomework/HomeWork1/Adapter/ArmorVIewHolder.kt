@@ -24,7 +24,16 @@ class ArmorVIewHolder(
         date.text = itemsArmor.descriptionArmor
         change.setBackgroundResource(itemsArmor.change)
 
+        var changeL = true
+
         change.setOnClickListener {
+            if (changeL){
+                change.setBackgroundResource(R.drawable.change)
+                changeL =false
+            } else{
+                change.setBackgroundResource(R.drawable.change2)
+                changeL = true
+            }
 
         }
         itemView.setOnClickListener {
