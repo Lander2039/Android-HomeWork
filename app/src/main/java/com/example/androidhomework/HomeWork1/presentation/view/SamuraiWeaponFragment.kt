@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1
+package com.example.androidhomework.HomeWork1.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import com.example.androidhomework.R
 
 
 class SamuraiWeaponFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

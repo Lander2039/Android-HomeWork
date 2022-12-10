@@ -12,34 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidHomeWork"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity5"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".HomeWork1.MainActivity4"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".HomeWork1.MainActivity3"
-            android:exported="true" />
-        <activity
-            android:name=".HomeWork1.MainActivity2"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.example.androidhomework.HomeWork1.OPEN_ACTIVITY2" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".HomeWork1.MainActivity"
+   <activity
+            android:name=".HomeWork1.presentation.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

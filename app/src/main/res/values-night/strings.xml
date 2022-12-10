@@ -23,4 +23,7 @@
     <string name="details">Details</string>
     <string name="Wonderful">Wonderful!!!</string>
     <string name="continueDialog">Continue</string>
+    <string name="mainscreen">Main Screen</string>
+    <string name="letcontinue">Let\'s continue</string>
+    <string name="imageviewclicked">ImageView clicked</string>
 </resources>

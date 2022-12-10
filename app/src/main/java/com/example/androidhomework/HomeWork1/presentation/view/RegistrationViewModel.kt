@@ -1,6 +1,5 @@
-package com.example.androidhomework.HomeWork1
+package com.example.androidhomework.HomeWork1.presentation.view
 
-import android.widget.RadioButton
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

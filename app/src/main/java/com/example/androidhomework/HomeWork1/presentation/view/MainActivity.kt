@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1
+package com.example.androidhomework.HomeWork1.presentation.view
 
 import android.annotation.SuppressLint
 

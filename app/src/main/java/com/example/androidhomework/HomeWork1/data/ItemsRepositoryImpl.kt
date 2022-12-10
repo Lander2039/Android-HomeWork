@@ -1,26 +1,12 @@
-package com.example.androidhomework.HomeWork1
+package com.example.androidhomework.HomeWork1.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.ItemsRepository
 import com.example.androidhomework.R
 
-const val imageViewClicked: String = "ImageView clicked"
-
-class ItemsViewModel : ViewModel() {
-
-    private val _items = MutableLiveData<List<ItemsArmor>>()
-    val items: LiveData<List<ItemsArmor>> = _items
-
-    private val _msg = MutableLiveData<String>()
-    val msg: LiveData<String> = _msg
-
-    private val _bundle = MutableLiveData<NavigateWithBundle>()
-    val bundle: LiveData<NavigateWithBundle> = _bundle
-
-    fun getData() {
-        val listArmor = listOf(
+class ItemsRepositoryImpl: ItemsRepository {
+    override fun getDate2(): List<ItemsArmor> {
+        val listArmor = listOf<ItemsArmor>(
             ItemsArmor(
                 R.drawable.kabuto,
                 "Kabuto",
@@ -74,22 +60,8 @@ class ItemsViewModel : ViewModel() {
                 "Mengu",
                 "Mask",
                 R.drawable.change
-            ),
+            )
         )
-        _items.value = listArmor
-    }
-
-    fun imageViewClicked() {
-        _msg.value = imageViewClicked
-    }
-
-    fun elementClicked(name: String, date: String, imageView: Int) {
-        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView)
+        return listArmor
     }
 }
-
-data class NavigateWithBundle(
-    val image: Int,
-    val name: String,
-    val date: String
-)

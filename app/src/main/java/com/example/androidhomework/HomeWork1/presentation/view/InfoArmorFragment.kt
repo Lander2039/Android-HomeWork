@@ -1,31 +1,27 @@
-package com.example.androidhomework.HomeWork1
+package com.example.androidhomework.HomeWork1.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.androidhomework.R
-
+import com.example.androidhomework.databinding.FragmentInfoArmorBinding
 
 class InfoArmorFragment : Fragment() {
+
+    private var _viewBinding: FragmentInfoArmorBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_info_armor, container, false)
+    ): View {
+        _viewBinding = FragmentInfoArmorBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val detailsName = view.findViewById<TextView>(R.id.detailsName)
-        val detailsData = view.findViewById<TextView>(R.id.detailsDate)
-        val detailsImage = view.findViewById<ImageView>(R.id.detailsImage)
 
         val bundle = arguments
         bundle?.let { safeBundle ->
@@ -33,11 +29,9 @@ class InfoArmorFragment : Fragment() {
             val date = safeBundle.getString("date")
             val image = safeBundle.getInt("imageView")
 
-            detailsName.text = name
-            detailsData.text = date
-            detailsImage.setBackgroundResource(image)
-
+            viewBinding.detailsName.text = name
+            viewBinding.detailsDate.text = date
+            viewBinding.detailsImage.setBackgroundResource(image)
         }
-
     }
 }
