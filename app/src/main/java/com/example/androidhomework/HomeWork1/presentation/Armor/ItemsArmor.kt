@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.Armor
+package com.example.androidhomework.HomeWork1.presentation.Armor
 
 data class ItemsArmor(
     val image: Int,

@@ -3,7 +3,7 @@ package com.example.androidhomework.HomeWork1.presentation.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
 import com.example.androidhomework.R
 
 

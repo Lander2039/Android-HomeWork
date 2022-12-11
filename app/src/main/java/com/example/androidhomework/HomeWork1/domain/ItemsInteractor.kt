@@ -1,6 +1,6 @@
 package com.example.androidhomework.HomeWork1.domain
 
-import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
 
 class ItemsInteractor(private val itemsRepository: ItemsRepository) {
 

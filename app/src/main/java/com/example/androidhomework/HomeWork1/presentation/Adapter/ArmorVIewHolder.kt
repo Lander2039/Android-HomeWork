@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
 import com.example.androidhomework.R
 
