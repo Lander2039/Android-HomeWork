@@ -10,8 +10,19 @@ class MainScreenViewModel : ViewModel() {
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
 
+    private val _nav = MutableLiveData<Unit?>()
+    val nav: LiveData<Unit?> = _nav
+
     fun openDialog() {
         _msg.value = R.string.letcontinue
+    }
+
+    fun finishButtonClicked(){
+        _nav.value = Unit
+    }
+
+    fun finishPerformed(){
+        _nav.value = null
     }
 
 }

@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
+import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGE_VIEW
+import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
-
 class InfoArmorFragment : Fragment() {
 
     private var _viewBinding: FragmentInfoArmorBinding? = null
@@ -25,9 +27,9 @@ class InfoArmorFragment : Fragment() {
 
         val bundle = arguments
         bundle?.let { safeBundle ->
-            val name = safeBundle.getString("name")
-            val date = safeBundle.getString("date")
-            val image = safeBundle.getInt("imageView")
+            val name = safeBundle.getString(KEY_NAME)
+            val date = safeBundle.getString(KEY_DATE)
+            val image = safeBundle.getInt(KEY_IMAGE_VIEW)
 
             viewBinding.detailsName.text = name
             viewBinding.detailsDate.text = date

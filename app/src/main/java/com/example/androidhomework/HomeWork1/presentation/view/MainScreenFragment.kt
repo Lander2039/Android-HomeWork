@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import com.example.androidhomework.HomeWork1.utils.BundleConstants.MAIN_SCREEN
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentMainScreenBinding
 
@@ -23,7 +22,7 @@ class MainScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentMainScreenBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -44,19 +43,32 @@ class MainScreenFragment : Fragment() {
             dialog.show()
         }
 
-        viewBinding.imageButton.setOnClickListener {
-                        parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, SamuraiArmorFragment())
-                .addToBackStack(MAIN_SCREEN)
-                .commit()
+        viewModel.finishButtonClicked()
+
+        viewModel.nav.observe(viewLifecycleOwner) {
+            viewBinding.imageButton.setOnClickListener {
+                if (it != null) {
+                    FragmentNavigation.moveFragment(
+                        parentFragmentManager,
+                        SamuraiArmorFragment(),
+                        true
+                    )
+                }
+                viewModel.finishPerformed()
+            }
         }
-        viewBinding.imageButton2.setOnClickListener {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, SamuraiWeaponFragment())
-                .addToBackStack(MAIN_SCREEN)
-                .commit()
+
+        viewModel.nav.observe(viewLifecycleOwner) {
+            viewBinding.imageButton2.setOnClickListener {
+                if (it != null) {
+                    FragmentNavigation.moveFragment(
+                        parentFragmentManager,
+                        SamuraiWeaponFragment(),
+                        true
+                    )
+                }
+                viewModel.finishPerformed()
+            }
         }
     }
 }

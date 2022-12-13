@@ -3,11 +3,12 @@ package com.example.androidhomework.HomeWork1.presentation.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androidhomework.HomeWork1.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.ItemsInteractor
 import com.example.androidhomework.R
 
 
-class ItemsViewModel : ViewModel() {
+class ItemsViewModel(private val itemsInteractor: ItemsInteractor) : ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsArmor>>()
     val items: LiveData<List<ItemsArmor>> = _items
@@ -19,62 +20,7 @@ class ItemsViewModel : ViewModel() {
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
     fun getData() {
-        val listArmor = listOf<ItemsArmor>(
-            ItemsArmor(
-                R.drawable.kabuto,
-                "Kabuto",
-                "Helmet",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kasudzuri,
-                "Kusazuri",
-                "Plate skirt",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.suneate,
-                "Suneate",
-                "Leggings",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kogake,
-                "Kogake",
-                "Plate shoes",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.sode,
-                "Sode",
-                "Shoulder pads",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kote,
-                "Kote",
-                "Bracers",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.tehkko,
-                "Tekko",
-                "Mittens and gloves",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kuvagata,
-                "Kuvagata",
-                "Horns",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.mengu,
-                "Mengu",
-                "Mask",
-                R.drawable.change
-            )
-        )
+        val listArmor = itemsInteractor.getDate3()
         _items.value = listArmor
     }
 

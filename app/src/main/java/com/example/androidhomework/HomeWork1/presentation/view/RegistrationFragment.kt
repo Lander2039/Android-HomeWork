@@ -20,7 +20,7 @@ class RegistrationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentRegistrationBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -32,28 +32,34 @@ class RegistrationFragment : Fragment() {
             viewBinding.rb1.isChecked = it.firstButtonChecked
             viewBinding.rb2.isChecked = it.secondButtonChecked
         }
-
-        viewBinding.btnRegistration.setOnClickListener {
-            if (viewBinding.etTextEmail.text.toString().isEmpty()) {
-                viewBinding.etTextEmail.error = getString(R.string.EmailEnteredIncorrectly)
-            } else if (viewBinding.etTextEmail.text.toString().indexOf("@") == -1) {
-                viewBinding.etTextEmail.error = getString(R.string.invalidEmail)
-            } else if (viewBinding.etTextLogin.text.toString().isEmpty()) {
-                viewBinding.etTextLogin.error = getString(R.string.LoginIncorrectly)
-            } else if (viewBinding.etTextPasswordRegistration.text.toString().isEmpty()) {
-                viewBinding.etTextPasswordRegistration.error =
-                    getString(R.string.PasswordEnteredIncorrectly)
-            } else if (viewBinding.etTextPasswordRegistration2.text.toString().isEmpty()) {
-                viewBinding.etTextPasswordRegistration2.error =
-                    getString(R.string.PasswordEnteredIncorrectly)
-            } else if (viewBinding.etTextPasswordRegistration.text.toString() != viewBinding.etTextPasswordRegistration2.text.toString()) {
-                viewBinding.etTextPasswordRegistration.error =
-                    getString(R.string.PasswordsDoNotMatch)
-            } else
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, MainScreenFragment())
-                    .commit()
+        viewModel.finishButtonClicked()
+        viewModel.nav.observe(viewLifecycleOwner) {
+            if (it != null) {
+                viewBinding.btnRegistration.setOnClickListener {
+                    if (viewBinding.etTextEmail.text.toString().isEmpty()) {
+                        viewBinding.etTextEmail.error = getString(R.string.EmailEnteredIncorrectly)
+                    } else if (viewBinding.etTextEmail.text.toString().indexOf("@") == -1) {
+                        viewBinding.etTextEmail.error = getString(R.string.invalidEmail)
+                    } else if (viewBinding.etTextLogin.text.toString().isEmpty()) {
+                        viewBinding.etTextLogin.error = getString(R.string.LoginIncorrectly)
+                    } else if (viewBinding.etTextPasswordRegistration.text.toString().isEmpty()) {
+                        viewBinding.etTextPasswordRegistration.error =
+                            getString(R.string.PasswordEnteredIncorrectly)
+                    } else if (viewBinding.etTextPasswordRegistration2.text.toString().isEmpty()) {
+                        viewBinding.etTextPasswordRegistration2.error =
+                            getString(R.string.PasswordEnteredIncorrectly)
+                    } else if (viewBinding.etTextPasswordRegistration.text.toString() != viewBinding.etTextPasswordRegistration2.text.toString()) {
+                        viewBinding.etTextPasswordRegistration.error =
+                            getString(R.string.PasswordsDoNotMatch)
+                    } else
+                        FragmentNavigation.moveFragment(
+                            parentFragmentManager,
+                            MainScreenFragment(),
+                            false
+                        )
+                }
+                viewModel.finishPerformed()
+            }
         }
 
         viewBinding.rb1.setOnClickListener {
