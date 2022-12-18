@@ -2,8 +2,10 @@ package com.example.androidhomework.HomeWork1.presentation.view
 
 import com.example.androidhomework.HomeWork1.domain.ItemsInteractor
 import com.example.androidhomework.R
+import javax.inject.Inject
 
-class ItemsPresenter(private val itemsView: ItemsView,
+
+class ItemsPresenter @Inject constructor(private val itemsView: ItemsView,
                      private val itemsInteractor: ItemsInteractor
 ) {
     fun getDate(){
