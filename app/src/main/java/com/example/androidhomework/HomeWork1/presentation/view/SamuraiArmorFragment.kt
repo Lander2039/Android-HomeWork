@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androidhomework.HomeWork1.data.ItemsRepositoryImpl
-import com.example.androidhomework.HomeWork1.domain.ItemsInteractor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
 import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
@@ -19,11 +16,15 @@ import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.SAMURAI_ARMOR_FRAGMENT
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentSamuraiArmorBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
+
+@AndroidEntryPoint
+class SamuraiArmorFragment: Fragment(), ItemsListener, ItemsView {
 
     private lateinit var armorAdapter: ArmorAdapter
-
+    @Inject
     lateinit var itemsPresenter: ItemsPresenter
 
     private var _viewBinding: FragmentSamuraiArmorBinding? = null
@@ -32,15 +33,13 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentSamuraiArmorBinding.inflate(inflater)
         return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        itemsPresenter = ItemsPresenter(this, ItemsInteractor(ItemsRepositoryImpl()))
 
         armorAdapter = ArmorAdapter(this)
         viewBinding.resView.layoutManager = LinearLayoutManager(context)
@@ -54,7 +53,7 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
     }
 
     override fun onElementSelected(name: String, date: String, imageView: Int) {
-        itemsPresenter.elementSelected(name,date, imageView)
+        itemsPresenter.elementSelected(name, date, imageView)
     }
 
     override fun dataReceived(list: List<ItemsArmor>) {

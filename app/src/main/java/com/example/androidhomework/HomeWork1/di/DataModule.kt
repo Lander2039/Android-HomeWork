@@ -2,6 +2,7 @@ package com.example.androidhomework.HomeWork1.di
 
 import com.example.androidhomework.HomeWork1.data.ItemsRepositoryImpl
 import com.example.androidhomework.HomeWork1.domain.ItemsRepository
+import com.example.androidhomework.HomeWork1.presentation.view.ItemsPresenter
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
