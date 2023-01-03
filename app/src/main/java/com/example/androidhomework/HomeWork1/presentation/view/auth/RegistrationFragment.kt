@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
+import com.example.androidhomework.HomeWork1.utils.FragmentNavigation
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentRegistrationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
     private val viewModel: RegistrationViewModel by viewModels()

@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import com.example.androidhomework.HomeWork1.presentation.view.Armor.SamuraiArmorFragment
+import com.example.androidhomework.HomeWork1.presentation.view.Armor.SamuraiWeaponFragment
+import com.example.androidhomework.HomeWork1.utils.FragmentNavigation
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentMainScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainScreenFragment : Fragment() {
 
     private var _viewBinding: FragmentMainScreenBinding? = null

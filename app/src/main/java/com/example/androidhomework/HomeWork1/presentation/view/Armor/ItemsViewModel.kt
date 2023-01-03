@@ -3,12 +3,14 @@ package com.example.androidhomework.HomeWork1.presentation.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
-import com.example.androidhomework.HomeWork1.domain.ItemsInteractor
+import com.example.androidhomework.HomeWork1.presentation.view.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class ItemsViewModel(private val itemsInteractor: ItemsInteractor) : ViewModel() {
+@HiltViewModel
+class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInteractor) : ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsArmor>>()
     val items: LiveData<List<ItemsArmor>> = _items

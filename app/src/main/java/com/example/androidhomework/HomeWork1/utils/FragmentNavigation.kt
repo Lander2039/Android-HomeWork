@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.utils
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

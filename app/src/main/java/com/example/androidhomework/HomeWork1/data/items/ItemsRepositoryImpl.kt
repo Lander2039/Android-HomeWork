@@ -1,10 +1,11 @@
-package com.example.androidhomework.HomeWork1.data
+package com.example.androidhomework.HomeWork1.data.items
 
-import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
-import com.example.androidhomework.HomeWork1.domain.ItemsRepository
+import com.example.androidhomework.HomeWork1.presentation.view.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
 import com.example.androidhomework.R
+import javax.inject.Inject
 
-class ItemsRepositoryImpl: ItemsRepository {
+class ItemsRepositoryImpl @Inject constructor(): ItemsRepository {
     override fun getDate2(): List<ItemsArmor> {
         val listArmor = listOf<ItemsArmor>(
             ItemsArmor(

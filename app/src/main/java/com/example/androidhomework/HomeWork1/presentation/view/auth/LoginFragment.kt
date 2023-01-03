@@ -1,16 +1,20 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.auth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
+import com.example.androidhomework.HomeWork1.utils.FragmentNavigation
 
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _viewBinding: FragmentLoginBinding? = null
@@ -26,11 +30,12 @@ class LoginFragment : Fragment() {
         return viewBinding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.finishButtonClicked()
-        viewModel.nav.observe(viewLifecycleOwner) {
+        viewModel.reg.observe(viewLifecycleOwner) {
             if (it != null) {
                 viewBinding.btnLogin.setOnClickListener {
                     if (viewBinding.etTextName.text.toString().isEmpty()) {
@@ -41,6 +46,10 @@ class LoginFragment : Fragment() {
                         viewBinding.etTextName.error =
                             getString(R.string.PasswordEnteredIncorrectly)
                     } else
+                        viewModel.loginUser(
+                            viewBinding.etTextName.text.toString(),
+                            viewBinding.etTextPassword.text.toString()
+                        )
                         FragmentNavigation.moveFragment(
                             parentFragmentManager,
                             MainScreenFragment(),

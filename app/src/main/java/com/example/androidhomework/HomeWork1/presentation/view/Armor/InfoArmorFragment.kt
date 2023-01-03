@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.Armor
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,9 @@ import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGE_VIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class InfoArmorFragment : Fragment() {
 
     private var _viewBinding: FragmentInfoArmorBinding? = null
