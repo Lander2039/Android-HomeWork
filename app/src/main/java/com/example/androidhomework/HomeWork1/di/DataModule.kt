@@ -1,8 +1,9 @@
 package com.example.androidhomework.HomeWork1.di
 
-import com.example.androidhomework.HomeWork1.data.ItemsRepositoryImpl
-import com.example.androidhomework.HomeWork1.domain.ItemsRepository
-import com.example.androidhomework.HomeWork1.presentation.view.ItemsPresenter
+import com.example.androidhomework.HomeWork1.data.auth.AuthRepositiryImpl
+import com.example.androidhomework.HomeWork1.data.items.ItemsRepositoryImpl
+import com.example.androidhomework.HomeWork1.domain.auth.AuthRepository
+import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +16,9 @@ abstract class DataModule {
     abstract fun bindItemsRepository(
         itemsRepositoryImpl: ItemsRepositoryImpl
     ): ItemsRepository
+
+    @Binds
+    abstract fun bindLoginRepository(
+        authRepositiryImpl: AuthRepositiryImpl
+    ): AuthRepository
 }

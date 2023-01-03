@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="80dp"
     android:layout_marginTop="15dp"
     app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="15dp">
 
         <ImageView
@@ -31,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/atomic_age"
-            android:text="Mango"
             android:gravity="left"
+            android:text="Mango"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +42,10 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:layout_marginLeft="15dp"
             android:id="@+id/tv_date"
             android:layout_width="187dp"
             android:layout_height="32dp"
+            android:layout_marginLeft="15dp"
             android:fontFamily="@font/atomic_age"
             android:text="06/05/1993"
             android:textSize="15sp"
@@ -55,7 +54,7 @@
             app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.805" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/iv_change"

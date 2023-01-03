@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
-import com.example.androidhomework.HomeWork1.presentation.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGEVIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
@@ -41,11 +41,14 @@ class SamuraiArmorFragment: Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        itemsPresenter.setView(this)
+
         armorAdapter = ArmorAdapter(this)
         viewBinding.resView.layoutManager = LinearLayoutManager(context)
         viewBinding.resView.adapter = armorAdapter
 
-        itemsPresenter.getDate()
+        itemsPresenter.getItems()
+
     }
 
     override fun onClick() {
@@ -64,12 +67,12 @@ class SamuraiArmorFragment: Fragment(), ItemsListener, ItemsView {
         Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
     }
 
-    override fun goToDetails(name: String, date: String, imageView: Int) {
+    override fun goToDetails(navigateWithBundle: NavigateWithBundle) {
         val infoArmorFragment = InfoArmorFragment()
         val bundle = Bundle()
-        bundle.putString(KEY_NAME, name)
-        bundle.putString(KEY_DATE, date)
-        bundle.putInt(KEY_IMAGEVIEW, imageView)
+        bundle.putString(KEY_NAME, navigateWithBundle.name)
+        bundle.putString(KEY_DATE, navigateWithBundle.date)
+        bundle.putInt(KEY_IMAGEVIEW, navigateWithBundle.image)
         infoArmorFragment.arguments = bundle
 
         parentFragmentManager.beginTransaction()

@@ -1,30 +1,38 @@
-package com.example.androidhomework.HomeWork1.presentation.view
+package com.example.androidhomework.HomeWork1.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
+import com.example.androidhomework.HomeWork1.presentation.view.registration.RegistrationFragment
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class LoginFragment : Fragment() {
+@AndroidEntryPoint
+class LoginFragment : Fragment(), LoginView {
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
 
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentLoginBinding.inflate(inflater)
         return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loginPresenter.setView(this)
 
         viewBinding.btnLogin.setOnClickListener {
             if (viewBinding.etTextName.text.toString().isEmpty()) {
@@ -34,16 +42,28 @@ class LoginFragment : Fragment() {
                 viewBinding.textInputLayout2.setErrorIconDrawable(R.drawable.error)
                 viewBinding.etTextName.error = getString(R.string.PasswordEnteredIncorrectly)
             } else
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, MainScreenFragment())
-                    .commit()
+                loginPresenter.loginUser(
+                    viewBinding.etTextName.text.toString(),
+                    viewBinding.etTextPassword.text.toString()
+                )
         }
+
         viewBinding.btnRegistrationScreen.setOnClickListener {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, RegistrationFragment())
-                .commit()
+            loginPresenter.regUser()
         }
+    }
+
+    override fun loginUser() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, MainScreenFragment())
+            .commit()
+    }
+
+    override fun regUser() {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.activity_container, RegistrationFragment())
+            .commit()
     }
 }

@@ -53,4 +53,5 @@
     <string name="mainscreen">Main Screen</string>
     <string name="letcontinue">Let\'s continue</string>
     <string name="imageviewclicked">ImageView clicked</string>
+    <string name="logout">Logout</string>
 </resources>
