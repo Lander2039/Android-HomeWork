@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.example.androidhomework.HomeWork1.presentation.view.auth.LoginFragment
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGE_VIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
+import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +19,8 @@ class InfoArmorFragment : Fragment() {
 
     private var _viewBinding: FragmentInfoArmorBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: InfoArmorViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +42,16 @@ class InfoArmorFragment : Fragment() {
             viewBinding.detailsName.text = name
             viewBinding.detailsDate.text = date
             viewBinding.detailsImage.setBackgroundResource(image)
+        }
+        viewBinding.btnLogout.setOnClickListener {
+            viewModel.logoutUser()
+        }
+
+        viewModel.nav.observe(viewLifecycleOwner){
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, LoginFragment())
+                .commit()
         }
     }
 }

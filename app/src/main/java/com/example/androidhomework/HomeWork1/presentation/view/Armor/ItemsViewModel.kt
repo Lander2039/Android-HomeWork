@@ -1,12 +1,18 @@
 package com.example.androidhomework.HomeWork1.presentation.view
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.androidhomework.HomeWork1.presentation.view.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.R
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,9 +27,24 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
+    private val _exp = MutableLiveData<String?>()
+    val exp: LiveData<String?> = _exp
+
     fun getData() {
-        val listArmor = itemsInteractor.getDate3()
-        _items.value = listArmor
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exceptionHandler called", exception.toString())
+        }
+        viewModelScope.launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
+            try {
+                launch {
+                    val listArmor = itemsInteractor.getDate3()
+                    _items.value = listArmor
+                }
+            } catch (e: Exception) {
+                _exp.value = e.message.toString()
+                Log.w("exception", "loginUser FAILED")
+            }
+        }
     }
 
     fun imageViewClicked() {
@@ -38,6 +59,7 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
         _bundle.value = null
     }
 }
+
 
 data class NavigateWithBundle(
     val image: Int,

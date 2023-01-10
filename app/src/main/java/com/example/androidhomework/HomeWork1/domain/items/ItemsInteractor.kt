@@ -4,7 +4,7 @@ import com.example.androidhomework.HomeWork1.presentation.view.Armor.ItemsArmor
 
 class ItemsInteractor(private val itemsRepository: ItemsRepository) {
 
-    fun getDate3(): List<ItemsArmor>{
+    suspend fun getDate3(): List<ItemsArmor>{
         return  itemsRepository.getDate2()
     }
 }

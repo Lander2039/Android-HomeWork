@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.presentation.view.auth
+package com.example.androidhomework.HomeWork1.presentation.view.Armor
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -14,37 +14,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
+class InfoArmorViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
+
     private val _nav = MutableLiveData<Unit?>()
     val nav: LiveData<Unit?> = _nav
-
-    private val _reg = MutableLiveData<Unit?>()
-    val reg: LiveData<Unit?> = _reg
 
     private val _msg = MutableLiveData<String?>()
     val msg: LiveData<String?> = _msg
 
-    fun finishButtonClicked() {
-        _nav.value = Unit
-    }
-
-    fun finishPerformed() {
-        _nav.value = null
-    }
-
-    fun loginUser(userName: String, userPassword: String) {
+    fun logoutUser() {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
         viewModelScope.launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
             try {
                 launch {
-                    authInteractor.loginUser(userName, userPassword)
-                    _reg.value = Unit
+                    authInteractor.logoutUser()
+                    _nav.value = Unit
                 }
             } catch (e: Exception) {
                 _msg.value = e.message.toString()
-                Log.w("exception", "loginUser FAILED")
+                Log.w("exception", "LogoutUser FAILED")
             }
         }
     }
