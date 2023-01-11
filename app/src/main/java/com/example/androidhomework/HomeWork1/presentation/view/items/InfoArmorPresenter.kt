@@ -1,13 +1,15 @@
 package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInteractor){
+class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
 
     private lateinit var infoArmorView: InfoArmorView
 
-    fun setView(infoArmorFragment: InfoArmorFragment){
+    fun setView(infoArmorFragment: InfoArmorFragment) {
         infoArmorView = infoArmorFragment
     }
 
@@ -26,7 +28,12 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
     }
 
     fun logoutUser() {
-        authInteractor.logoutUser()
-        infoArmorView.userLoggedOut()
+        GlobalScope.launch {
+            val job = launch {
+                authInteractor.logoutUser()
+                infoArmorView.userLoggedOut()
+            }
+            job.join()
+        }
     }
 }

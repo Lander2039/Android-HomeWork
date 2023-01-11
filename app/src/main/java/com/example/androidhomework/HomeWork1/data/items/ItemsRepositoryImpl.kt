@@ -6,7 +6,7 @@ import com.example.androidhomework.R
 import javax.inject.Inject
 
 class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {
-    override fun getDate2(): List<ItemsArmor> {
+    override suspend fun getDate2(): List<ItemsArmor> {
         val listArmor = listOf<ItemsArmor>(
             ItemsArmor(
                 R.drawable.kabuto,

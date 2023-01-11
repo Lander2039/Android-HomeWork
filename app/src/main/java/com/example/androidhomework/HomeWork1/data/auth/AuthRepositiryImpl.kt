@@ -7,20 +7,20 @@ import javax.inject.Inject
 
 class AuthRepositiryImpl @Inject constructor(private val sharedPreferencesHelper: SharedPreferencesHelper):AuthRepository {
 
-    override fun LoginUser(userName: String, userPassword: String) {
+    override suspend fun LoginUser(userName: String, userPassword: String) {
         sharedPreferencesHelper.saveUserName(userName)
         sharedPreferencesHelper.saveUserPassword(userPassword)
     }
 
-    override fun showUserCreds(): UserModel {
+    override suspend fun showUserCreds(): UserModel {
         return sharedPreferencesHelper.getUserCreds()
     }
 
-    override fun doesUserExist(): Boolean {
+    override suspend fun doesUserExist(): Boolean {
         return sharedPreferencesHelper.checkUserExists()
     }
 
-    override fun userLogout() {
+    override suspend fun userLogout() {
         sharedPreferencesHelper.removeUser()
     }
 }

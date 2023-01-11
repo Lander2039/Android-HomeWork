@@ -2,6 +2,8 @@ package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.R
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -14,8 +16,13 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     }
 
     fun getItems() {
-        val listItems = itemsInteractor.getDate3()
-        itemsView.dataReceived(listItems)
+        GlobalScope.launch {
+            val job = launch {
+                val listItems = itemsInteractor.getDate3()
+                itemsView.dataReceived(listItems)
+            }
+            job.join()
+        }
     }
 
     fun imageViewClicked() {

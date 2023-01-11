@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
 
-    fun getDate3(): List<ItemsArmor>{
+    suspend fun getDate3(): List<ItemsArmor>{
         return  itemsRepository.getDate2()
     }
 }
