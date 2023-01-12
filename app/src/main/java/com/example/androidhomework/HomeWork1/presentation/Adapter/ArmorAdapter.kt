@@ -15,6 +15,7 @@ class ArmorAdapter(
 
     fun submitList (list: List<ItemsArmor>){
         this.listArmor = list
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorVIewHolder {
