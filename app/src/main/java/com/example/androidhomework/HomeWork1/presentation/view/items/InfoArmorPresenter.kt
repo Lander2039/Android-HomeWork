@@ -1,8 +1,8 @@
 package com.example.androidhomework.HomeWork1.presentation.view.items
 
+import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
@@ -28,12 +28,18 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
     }
 
     fun logoutUser() {
-        GlobalScope.launch {
-            val job = launch {
-                authInteractor.logoutUser()
-                infoArmorView.userLoggedOut()
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exceptionHandler called", exception.toString())
+        }
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            try {
+                val job = launch {
+                    authInteractor.logoutUser()
+                    infoArmorView.userLoggedOut()
+                }
+                job.join()
+            } catch (e: Exception) {
             }
-            job.join()
         }
     }
 }
