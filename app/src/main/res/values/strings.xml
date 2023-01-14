@@ -54,4 +54,6 @@
     <string name="letcontinue">Let\'s continue</string>
     <string name="imageviewclicked">ImageView clicked</string>
     <string name="logout">Logout</string>
+    <string name="go_to_menu">Go to menu</string>
+    <string name="welcome_to_the_application">Welcome to the application</string>
 </resources>

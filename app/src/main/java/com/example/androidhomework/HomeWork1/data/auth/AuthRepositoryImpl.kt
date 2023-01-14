@@ -1,8 +1,8 @@
 package com.example.androidhomework.HomeWork1.data.auth
 
-import com.example.kotlinlesson.data.sharedPreferences.SharedPreferencesHelper
-import com.example.kotlinlesson.domain.auth.AuthRepository
-import com.example.kotlinlesson.domain.model.UserModel
+import com.example.androidhomework.HomeWork1.data.sharedPreferences.SharedPreferencesHelper
+import com.example.androidhomework.HomeWork1.domain.auth.AuthRepository
+import com.example.androidhomework.HomeWork1.domain.model.UserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

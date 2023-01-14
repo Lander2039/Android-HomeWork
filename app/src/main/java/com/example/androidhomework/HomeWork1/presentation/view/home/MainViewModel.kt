@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kotlinlesson.domain.auth.AuthInteractor
+import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
+import com.example.androidhomework.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
@@ -18,8 +19,8 @@ class MainViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ) : ViewModel() {
 
-    private val _userLogout = MutableLiveData<Boolean>()
-    val userLogout: LiveData<Boolean> = _userLogout
+    private val _nav = MutableLiveData<Int>()
+    val nav: LiveData<Int> = _nav
 
     private val _msg = MutableLiveData<String?>()
     val msg: LiveData<String?> = _msg
@@ -31,7 +32,11 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
             try {
                 launch {
-                    _userLogout.value = authInteractor.checkUserExists()
+                    val doesUserExist: Boolean = authInteractor.checkUserExists()
+                    _nav.value = when (doesUserExist) {
+                        true -> R.navigation.main_graph
+                        false -> R.navigation.auth_graph
+                    }
                 }
             } catch (e: Exception) {
                 _msg.value = e.message.toString()

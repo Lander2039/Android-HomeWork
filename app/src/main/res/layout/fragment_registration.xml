@@ -111,7 +111,7 @@
                     android:layout_marginVertical="1dp"
                     android:contentDescription="@string/todo2"
                     android:foregroundGravity="left|center|center_horizontal"
-                    app:srcCompat="@drawable/login" />
+                    app:srcCompat="@drawable/loginscreen" />
 
                 <RadioButton
                     android:id="@+id/rb2"

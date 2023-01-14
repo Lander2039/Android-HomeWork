@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidhomework.HomeWork1.presentation.view.auth.LoginFragment
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGE_VIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
+import com.example.androidhomework.HomeWork1.utils.NavHelper
+import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,10 +51,9 @@ class InfoArmorFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner){
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, LoginFragment())
-                .commit()
+            if (it != null) {
+                replaceGraph(it)
+            }
         }
     }
 }

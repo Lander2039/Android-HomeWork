@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.domain.model
+package com.example.androidhomework.HomeWork1.domain.model
 
 data class ItemsModel(
     val image: Int,

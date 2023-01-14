@@ -6,19 +6,19 @@ import com.example.androidhomework.R
 
 object FragmentNavigation {
 
-    fun moveFragment (parentFragmentManager: FragmentManager, fragment: Fragment, addToBackStack: Boolean){
-        if (addToBackStack) {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, fragment)
-                .addToBackStack("")
-                .commit()
-        } else{
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, fragment)
-
-                .commit()
-        }
-    }
+//    fun moveFragment (parentFragmentManager: FragmentManager, fragment: Fragment, addToBackStack: Boolean){
+//        if (addToBackStack) {
+//            parentFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.activity_container, fragment)
+//                .addToBackStack("")
+//                .commit()
+//        } else{
+//            parentFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.activity_container, fragment)
+//
+//                .commit()
+//        }
+//    }
 }

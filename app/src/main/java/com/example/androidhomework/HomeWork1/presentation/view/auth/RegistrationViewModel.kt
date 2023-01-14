@@ -3,6 +3,7 @@ package com.example.androidhomework.HomeWork1.presentation.view.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.androidhomework.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,8 +14,8 @@ class RegistrationViewModel @Inject constructor()  : ViewModel() {
     val radioButtonState: LiveData<RadioButtonState>
         get() = _radioButtonState
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
 
     fun changeRadioButtonState(firstChecked: Boolean, secondChecked: Boolean) {
         if (firstChecked) {
@@ -25,7 +26,7 @@ class RegistrationViewModel @Inject constructor()  : ViewModel() {
     }
 
     fun finishButtonClicked() {
-        _nav.value = Unit
+        _nav.value = R.id.action_registrationFragment_to_homeFragment
     }
 
     fun finishPerformed() {

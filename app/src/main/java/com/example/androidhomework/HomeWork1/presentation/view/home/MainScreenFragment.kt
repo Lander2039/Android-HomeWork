@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidhomework.HomeWork1.presentation.view.Armor.SamuraiArmorFragment
 import com.example.androidhomework.HomeWork1.presentation.view.Armor.SamuraiWeaponFragment
 import com.example.androidhomework.HomeWork1.utils.FragmentNavigation
+import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +36,7 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.openDialog()
+//        viewModel.openDialog()
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
             val dialog = AlertDialog.Builder(requireActivity())
                 .setTitle(getString(R.string.Wonderful))
@@ -47,32 +49,26 @@ class MainScreenFragment : Fragment() {
             dialog.show()
         }
 
-        viewModel.finishButtonClicked()
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            viewBinding.imageButton.setOnClickListener {
-                if (it != null) {
-                    FragmentNavigation.moveFragment(
-                        parentFragmentManager,
-                        SamuraiArmorFragment(),
-                        true
-                    )
-                }
-                viewModel.finishPerformed()
+            if (it != null) {
+                navigate(it)
             }
         }
+            viewBinding.btnArmor.setOnClickListener {
+                viewModel.openArmor()
+                viewModel.finishPerformed()
+            }
 
-        viewModel.nav.observe(viewLifecycleOwner) {
-            viewBinding.imageButton2.setOnClickListener {
-                if (it != null) {
-                    FragmentNavigation.moveFragment(
-                        parentFragmentManager,
-                        SamuraiWeaponFragment(),
-                        true
-                    )
-                }
-                viewModel.finishPerformed()
+
+        viewModel.arm.observe(viewLifecycleOwner) {
+            if (it != null) {
+                navigate(it)
             }
         }
+            viewBinding.btnWeapon.setOnClickListener {
+                viewModel.openWeapon()
+                viewModel.finishPerformed()
+            }
     }
 }

@@ -1,12 +1,12 @@
-package com.example.kotlinlesson.di
+package com.example.androidhomework.HomeWork1.di
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import com.example.androidhomework.HomeWork1.data.sharedPreferences.SharedPreferencesHelper
+import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
+import com.example.androidhomework.HomeWork1.domain.auth.AuthRepository
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
-import com.example.kotlinlesson.data.sharedPreferences.SharedPreferencesHelper
-import com.example.kotlinlesson.domain.auth.AuthInteractor
-import com.example.kotlinlesson.domain.auth.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,13 +27,14 @@ class DomainModule {
         return AuthInteractor(authRepository)
     }
 
-    companion object{
+    companion object {
 
         private const val SP_KEY = "SP_KEY"
 
         @Provides
-        fun  provideSharedPreferences(@ApplicationContext context: Context
-        ): SharedPreferencesHelper{
+        fun provideSharedPreferences(
+            @ApplicationContext context: Context
+        ): SharedPreferencesHelper {
             return SharedPreferencesHelper(
                 context.getSharedPreferences(SP_KEY, MODE_PRIVATE)
             )

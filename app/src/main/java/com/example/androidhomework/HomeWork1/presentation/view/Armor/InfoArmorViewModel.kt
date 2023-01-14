@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kotlinlesson.domain.auth.AuthInteractor
+import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
+import com.example.androidhomework.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
@@ -14,10 +15,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class InfoArmorViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
+class InfoArmorViewModel @Inject constructor(private val authInteractor: AuthInteractor) :
+    ViewModel() {
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
 
     private val _msg = MutableLiveData<String?>()
     val msg: LiveData<String?> = _msg
@@ -30,7 +32,7 @@ class InfoArmorViewModel @Inject constructor(private val authInteractor: AuthInt
             try {
                 launch {
                     authInteractor.logoutUser()
-                    _nav.value = Unit
+                    _nav.value = R.navigation.auth_graph
                 }
             } catch (e: Exception) {
                 _msg.value = e.message.toString()

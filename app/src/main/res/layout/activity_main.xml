@@ -9,23 +9,30 @@
     tools:context=".HomeWork1.presentation.view.home.MainActivity"
     >
 
-    <androidx.fragment.app.FragmentContainerView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/activity_container"/>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/samurai"
-        android:alpha="0.1"
+        app:srcCompat="@drawable/loginscreen"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
         />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:navGraph="@navigation/auth_graph"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
-package com.example.kotlinlesson.domain.auth
+package com.example.androidhomework.HomeWork1.domain.auth
 
-import com.example.kotlinlesson.domain.model.UserModel
+import com.example.androidhomework.HomeWork1.domain.model.UserModel
+
 
 interface AuthRepository {
 

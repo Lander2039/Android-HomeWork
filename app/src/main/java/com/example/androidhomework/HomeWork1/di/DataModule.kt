@@ -1,9 +1,9 @@
-package com.example.kotlinlesson.di
+package com.example.androidhomework.HomeWork1.di
 
 import com.example.androidhomework.HomeWork1.data.auth.AuthRepositoryImpl
 import com.example.androidhomework.HomeWork1.data.items.ItemsRepositoryImpl
+import com.example.androidhomework.HomeWork1.domain.auth.AuthRepository
 import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
-import com.example.kotlinlesson.domain.auth.AuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

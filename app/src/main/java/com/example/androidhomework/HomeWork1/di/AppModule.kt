@@ -1,4 +1,4 @@
-package com.example.kotlinlesson.di
+package com.example.androidhomework.HomeWork1.di
 
 import android.content.Context
 import dagger.Module
@@ -13,7 +13,7 @@ import dagger.hilt.components.SingletonComponent
 class AppModule {
 
     @Provides
-    fun  provideContext(@ApplicationContext context: Context): Context{
+    fun provideContext(@ApplicationContext context: Context): Context {
         return context
     }
 }

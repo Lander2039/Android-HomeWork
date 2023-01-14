@@ -13,19 +13,26 @@ class MainScreenViewModel @Inject constructor() : ViewModel() {
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
+
+    private val _arm = MutableLiveData<Int?>()
+    val arm: LiveData<Int?> = _arm
 
     fun openDialog() {
         _msg.value = R.string.letcontinue
     }
 
-    fun finishButtonClicked(){
-        _nav.value = Unit
+    fun openArmor(){
+        _nav.value = R.id.action_mainScreenFragment_to_samuraiArmorFragment
     }
 
     fun finishPerformed(){
         _nav.value = null
+    }
+
+    fun openWeapon(){
+        _arm.value = R.id.action_mainScreenFragment_to_samuraiWeaponFragment
     }
 
 }

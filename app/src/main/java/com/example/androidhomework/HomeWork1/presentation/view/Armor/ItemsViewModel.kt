@@ -52,7 +52,7 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
     }
 
     fun elementClicked(name: String, date: String, imageView: Int) {
-        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView)
+        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView, destinationId = R.id.action_samuraiArmorFragment_to_infoArmorFragment)
     }
 
     fun userNavigated(){
@@ -64,5 +64,6 @@ class ItemsViewModel @Inject constructor(private val itemsInteractor: ItemsInter
 data class NavigateWithBundle(
     val image: Int,
     val name: String,
-    val date: String
+    val date: String,
+    val destinationId: Int
 )
