@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.domain.model.UserModel
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
 import com.example.androidhomework.R
@@ -45,8 +46,13 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
-    override fun showUserDate() {
-        binding.tvUserCreds.text
+    override fun showUserDate(userCreds: UserModel) {
+        binding.tvUserCreds.text = buildString {
+        append(getString(R.string.welcome))
+        append(userCreds.userName)
+        append(getString(R.string.your_password))
+        append(userCreds.userPassword)
+    }
     }
 
     override fun userLogout() {

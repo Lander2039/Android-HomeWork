@@ -23,8 +23,8 @@ class HomePresenter @Inject constructor(private val authInteractor: AuthInteract
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
                 val job = launch {
-                    authInteractor.getUserCreds()
-                    homeView.showUserDate()
+                    val userCreds = authInteractor.getUserCreds()
+                    homeView.showUserDate(userCreds)
                 }
                 job.join()
                 job.cancel()

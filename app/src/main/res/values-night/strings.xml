@@ -28,4 +28,6 @@
     <string name="imageviewclicked">ImageView clicked</string>
     <string name="logout">Logout</string>
     <string name="go_to_menu">Go to menu</string>
+    <string name="welcome">\"Welcome \"</string>
+    <string name="your_password">\"!!! Your password \"</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.androidhomework.HomeWork1.presentation.Adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +14,10 @@ class ArmorAdapter(
 
     private var listArmor = listOf<ItemsArmor>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<ItemsArmor>) {
         this.listArmor = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorVIewHolder {
