@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.androidhomework.HomeWork1.presentation.view.auth.LoginFragment
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGEVIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
+import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,10 +51,7 @@ class InfoArmorFragment : Fragment(), InfoArmorView {
     }
 
     override fun userLoggedOut() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, LoginFragment())
-            .commit()
+        replaceGraph(R.navigation.auth_graph)
     }
 
     override fun displayItemDate(name: String, date: String, imageView: Int) {

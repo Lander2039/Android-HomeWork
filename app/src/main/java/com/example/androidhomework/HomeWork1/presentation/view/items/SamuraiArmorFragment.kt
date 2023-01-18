@@ -1,19 +1,19 @@
 package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
-import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGEVIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
-import com.example.androidhomework.HomeWork1.utils.BundleConstants.SAMURAI_ARMOR_FRAGMENT
+import com.example.androidhomework.HomeWork1.utils.NavHelper.navigateWithBundle
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentSamuraiArmorBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,9 +21,10 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SamuraiArmorFragment: Fragment(), ItemsListener, ItemsView {
+class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var armorAdapter: ArmorAdapter
+
     @Inject
     lateinit var itemsPresenter: ItemsPresenter
 
@@ -75,9 +76,6 @@ class SamuraiArmorFragment: Fragment(), ItemsListener, ItemsView {
         bundle.putInt(KEY_IMAGEVIEW, navigateWithBundle.image)
         infoArmorFragment.arguments = bundle
 
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.activity_container, infoArmorFragment)
-            .addToBackStack(SAMURAI_ARMOR_FRAGMENT)
-            .commit()
+        navigateWithBundle(R.id.action_samuraiArmorFragment_to_infoArmorFragment, bundle)
     }
 }

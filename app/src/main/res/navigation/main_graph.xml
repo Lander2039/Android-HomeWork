@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/mainScreenFragment">
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment"
+        android:label="MainScreenFragment" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_samuraiArmorFragment"
+            app:destination="@id/samuraiArmorFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_samuraiWeaponFragment2"
+            app:destination="@id/samuraiWeaponFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/samuraiArmorFragment"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.items.SamuraiArmorFragment"
+        android:label="fragment_samurai_armor"
+        tools:layout="@layout/fragment_samurai_armor" >
+        <action
+            android:id="@+id/action_samuraiArmorFragment_to_infoArmorFragment"
+            app:destination="@id/infoArmorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/samuraiWeaponFragment2"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.items.SamuraiWeaponFragment"
+        android:label="fragment_samurai_weapon"
+        tools:layout="@layout/fragment_samurai_weapon" />
+    <fragment
+        android:id="@+id/infoArmorFragment"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.items.InfoArmorFragment"
+        android:label="fragment_info_armor"
+        tools:layout="@layout/fragment_info_armor" />
+</navigation>

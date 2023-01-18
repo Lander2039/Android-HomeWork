@@ -2,7 +2,10 @@ package com.example.androidhomework.HomeWork1.presentation.view.auth
 
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
@@ -14,18 +17,19 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
     }
 
     fun loginUser(userName: String, userPassword: String) {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
             try {
-            val job = launch {
-                authInteractor.loginUser(userName, userPassword)
-                loginView.loginUser()
+                val job = launch {
+                    authInteractor.loginUser(userName, userPassword)
+                    loginView.loginUser()
+                }
+                job.join()
+                job.cancel()
+            } catch (e: Exception) {
             }
-            job.join()
-        } catch (e: Exception){
-        }
         }
     }
 

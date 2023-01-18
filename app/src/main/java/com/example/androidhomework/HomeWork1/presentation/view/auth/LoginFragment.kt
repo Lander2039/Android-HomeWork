@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
-import com.example.androidhomework.HomeWork1.presentation.view.registration.RegistrationFragment
+import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,16 +53,10 @@ class LoginFragment : Fragment(), LoginView {
     }
 
     override fun loginUser() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, MainScreenFragment())
-            .commit()
+        navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
     override fun regUser() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, RegistrationFragment())
-            .commit()
+        navigate(R.id.action_loginFragment_to_registrationFragment)
     }
 }

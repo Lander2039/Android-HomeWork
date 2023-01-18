@@ -9,17 +9,17 @@ import com.example.androidhomework.R
 
 class ArmorAdapter(
     private val itemsListener: ItemsListener
-): RecyclerView.Adapter<ArmorVIewHolder>(){
+) : RecyclerView.Adapter<ArmorVIewHolder>() {
 
     private var listArmor = listOf<ItemsArmor>()
 
-    fun submitList (list: List<ItemsArmor>){
+    fun submitList(list: List<ItemsArmor>) {
         this.listArmor = list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorVIewHolder {
-    val view = LayoutInflater.from(parent.context).inflate(R.layout.item_armor,parent,false)
-    return ArmorVIewHolder(view, itemsListener)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_armor, parent, false)
+        return ArmorVIewHolder(view, itemsListener)
     }
 
     override fun onBindViewHolder(holder: ArmorVIewHolder, position: Int) {

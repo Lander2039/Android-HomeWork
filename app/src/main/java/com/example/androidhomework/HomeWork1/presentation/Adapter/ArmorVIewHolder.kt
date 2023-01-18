@@ -27,10 +27,10 @@ class ArmorVIewHolder(
         var changeL = true
 
         change.setOnClickListener {
-            if (changeL){
+            if (changeL) {
                 change.setBackgroundResource(R.drawable.change)
-                changeL =false
-            } else{
+                changeL = false
+            } else {
                 change.setBackgroundResource(R.drawable.change2)
                 changeL = true
             }

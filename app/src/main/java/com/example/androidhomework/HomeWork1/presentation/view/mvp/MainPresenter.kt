@@ -2,7 +2,10 @@ package com.example.androidhomework.HomeWork1.presentation.view.mvp
 
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
@@ -14,7 +17,7 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
     }
 
     fun checkUserExists() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
@@ -24,7 +27,8 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
                     mainView.userExistsResult(doesUserExists)
                 }
                 job.join()
-            } catch (e: Exception){
+                job.cancel()
+            } catch (e: Exception) {
             }
         }
     }

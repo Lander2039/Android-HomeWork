@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
+import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentRegistrationBinding
 
@@ -45,10 +45,7 @@ class RegistrationFragment : Fragment() {
                 viewBinding.etTextPasswordRegistration.error =
                     getString(R.string.PasswordsDoNotMatch)
             } else
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, MainScreenFragment())
-                    .commit()
+                navigate(R.id.action_registrationFragment_to_homeFragment)
         }
     }
 }

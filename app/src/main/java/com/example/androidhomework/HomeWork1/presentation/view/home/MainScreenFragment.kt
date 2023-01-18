@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.androidhomework.HomeWork1.presentation.view.items.SamuraiWeaponFragment
-import com.example.androidhomework.HomeWork1.presentation.view.items.SamuraiArmorFragment
-import com.example.androidhomework.HomeWork1.utils.BundleConstants.MAIN_SCREEN
+import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,19 +46,11 @@ class MainScreenFragment : Fragment(), MainScreenView {
     }
 
     override fun goToArmorFragment() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, SamuraiArmorFragment())
-            .addToBackStack(MAIN_SCREEN)
-            .commit()
+        navigate(R.id.action_mainScreenFragment_to_samuraiArmorFragment)
     }
 
     override fun goToWeaponFragment() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, SamuraiWeaponFragment())
-            .addToBackStack(MAIN_SCREEN)
-            .commit()
+        navigate(R.id.action_mainScreenFragment_to_samuraiWeaponFragment2)
     }
 
     override fun startDialog(msg: Int) {

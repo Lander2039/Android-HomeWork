@@ -38,6 +38,7 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
                     infoArmorView.userLoggedOut()
                 }
                 job.join()
+                job.cancel()
             } catch (e: Exception) {
             }
         }

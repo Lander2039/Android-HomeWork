@@ -3,7 +3,10 @@ package com.example.androidhomework.HomeWork1.presentation.view.items
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.R
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -16,7 +19,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     }
 
     fun getItems() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
         CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
@@ -26,7 +29,8 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                     itemsView.dataReceived(listItems)
                 }
                 job.join()
-            } catch (e: Exception){
+                job.cancel()
+            } catch (e: Exception) {
             }
         }
     }

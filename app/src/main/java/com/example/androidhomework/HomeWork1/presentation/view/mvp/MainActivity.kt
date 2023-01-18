@@ -3,8 +3,8 @@ package com.example.androidhomework.HomeWork1.presentation.view.mvp
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidhomework.HomeWork1.presentation.view.auth.LoginFragment
-import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenFragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,11 +18,18 @@ class MainActivity : AppCompatActivity(), MainView {
     @Inject
     lateinit var mainPresenter: MainPresenter
 
+    lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
 
         setContentView(_binding!!.root)
+
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
 
         mainPresenter.setView(this)
 
@@ -30,14 +37,9 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun userExistsResult(userExists: Boolean) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(
-            R.id.activity_container,
-            when (userExists) {
-                true -> MainScreenFragment()
-                false -> LoginFragment()
-            }
-        )
-        fragmentTransaction.commit()
+        when (userExists) {
+            true -> navController.setGraph(R.navigation.main_graph)
+            false -> navController.setGraph(R.navigation.auth_graph)
+        }
     }
 }
