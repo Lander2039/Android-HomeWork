@@ -1,68 +1,41 @@
 package com.example.androidhomework.HomeWork1.data.items
 
+import com.example.androidhomework.HomeWork1.data.Service.ApiService
 import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
-import com.example.androidhomework.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {
+class ItemsRepositoryImpl @Inject constructor(
+    private val apiService: ApiService
+) : ItemsRepository {
     override suspend fun getDate2(): List<ItemsArmor> {
-        val listArmor = listOf<ItemsArmor>(
-            ItemsArmor(
-                R.drawable.kabuto,
-                "Kabuto",
-                "Helmet",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kasudzuri,
-                "Kusazuri",
-                "Plate skirt",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.suneate,
-                "Suneate",
-                "Leggings",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kogake,
-                "Kogake",
-                "Plate shoes",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.sode,
-                "Sode",
-                "Shoulder pads",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kote,
-                "Kote",
-                "Bracers",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.tehkko,
-                "Tekko",
-                "Mittens and gloves",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.kuvagata,
-                "Kuvagata",
-                "Horns",
-                R.drawable.change
-            ),
-            ItemsArmor(
-                R.drawable.mengu,
-                "Mengu",
-                "Mask",
-                R.drawable.change
-            )
-        )
-        return listArmor
+        return withContext(Dispatchers.IO) {
+            val response = apiService.getData()
+            response.body()?.let { items ->
+                items.map {
+                    ItemsArmor(
+                        it.id,
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.address.street,
+                        it.address.suite,
+                        it.address.city,
+                        it.address.zipcode,
+                        it.address.geo.lat,
+                        it.address.geo.lng,
+                        it.phone,
+                        it.website,
+                        it.company.name,
+                        it.company.catchPhrase,
+                        it.company.bs
+                    )
+                }
+            } ?: kotlin.run {
+                emptyList()
+            }
+        }
     }
 }

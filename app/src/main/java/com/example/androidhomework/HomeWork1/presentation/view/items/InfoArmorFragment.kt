@@ -39,9 +39,9 @@ class InfoArmorFragment : Fragment(), InfoArmorView {
         val bundle = arguments
         bundle?.let { safeBundle ->
             infoArmorPresenter.getArguments(
-                safeBundle.getString(KEY_NAME),
-                safeBundle.getString(KEY_DATE),
-                safeBundle.getInt(KEY_IMAGEVIEW),
+                safeBundle.getString(KEY_NAME)!!,
+                safeBundle.getString(KEY_DATE)!!,
+                safeBundle.getString(KEY_IMAGEVIEW)!!,
             )
         }
 
@@ -54,9 +54,9 @@ class InfoArmorFragment : Fragment(), InfoArmorView {
         replaceGraph(R.navigation.auth_graph)
     }
 
-    override fun displayItemDate(name: String, date: String, imageView: Int) {
+    override fun displayItemDate(name: String, userName: String, nameCompany: String) {
         viewBinding.detailsName.text = name
-        viewBinding.detailsDate.text = date
-        viewBinding.detailsImage.setBackgroundResource(imageView)
+        viewBinding.detailsDate.text = userName
+        viewBinding.detailsCompany.text = nameCompany
     }
 }

@@ -56,8 +56,8 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
         itemsPresenter.imageViewClicked()
     }
 
-    override fun onElementSelected(name: String, date: String, imageView: Int) {
-        itemsPresenter.elementSelected(name, date, imageView)
+    override fun onElementSelected(name: String, userName: String, nameCompany: String) {
+        itemsPresenter.elementSelected(name, userName, nameCompany)
     }
 
     override fun dataReceived(list: List<ItemsArmor>) {
@@ -72,8 +72,8 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
         val infoArmorFragment = InfoArmorFragment()
         val bundle = Bundle()
         bundle.putString(KEY_NAME, navigateWithBundle.name)
-        bundle.putString(KEY_DATE, navigateWithBundle.date)
-        bundle.putInt(KEY_IMAGEVIEW, navigateWithBundle.image)
+        bundle.putString(KEY_DATE, navigateWithBundle.userName)
+        bundle.putString(KEY_IMAGEVIEW, navigateWithBundle.nameCompany)
         infoArmorFragment.arguments = bundle
 
         navigateWithBundle(R.id.action_samuraiArmorFragment_to_infoArmorFragment, bundle)

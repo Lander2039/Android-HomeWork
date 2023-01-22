@@ -6,23 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
-import com.example.androidhomework.R
+import com.example.androidhomework.databinding.ItemArmorBinding
 
 class ArmorAdapter(
     private val itemsListener: ItemsListener
 ) : RecyclerView.Adapter<ArmorVIewHolder>() {
 
-    private var listArmor = listOf<ItemsArmor>()
+    private var listArmor = mutableListOf<ItemsArmor>()
 
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<ItemsArmor>) {
-        this.listArmor = list
-        notifyDataSetChanged()
+        this.listArmor.clear()
+        this.listArmor = list.toMutableList()
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorVIewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_armor, parent, false)
-        return ArmorVIewHolder(view, itemsListener)
+        val viewBinding =
+            ItemArmorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ArmorVIewHolder(viewBinding, itemsListener)
     }
 
     override fun onBindViewHolder(holder: ArmorVIewHolder, position: Int) {
@@ -33,3 +35,4 @@ class ArmorAdapter(
         return listArmor.size
     }
 }
+

@@ -57,4 +57,22 @@
     <string name="go_to_menu">Go to menu</string>
     <string name="welcome">\"Welcome \"</string>
     <string name="your_password">\"!!! Your password \"</string>
+    <string name="mango">Mango</string>
+    <string name="_06_05_1993">06/05/1993</string>
+    <string name="name">Name</string>
+    <string name="user_name">User name</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="company">Company:</string>
+    <string name="address">Address:</string>
+    <string name="phone">Phone</string>
+    <string name="street">street</string>
+    <string name="companyname">CompanyName</string>
+    <string name="catchphrase">catchPhrase</string>
+    <string name="bs">bs</string>
+    <string name="suite">suite</string>
+    <string name="city">city</string>
+    <string name="zipcode">zipcode</string>
+    <string name="geo_lat">geo.lat</string>
+    <string name="geo_lng">geo.lng</string>
 </resources>

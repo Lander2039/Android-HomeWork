@@ -22,7 +22,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
             try {
                 val job = launch {
                     val listItems = itemsInteractor.getDate3()
@@ -31,6 +31,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
+                Log.w("exception","Get Items FAILED")
             }
         }
     }
@@ -39,13 +40,13 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         itemsView.imageViewClicked(R.string.imageviewclicked)
     }
 
-    fun elementSelected(name: String, date: String, imageView: Int) {
-        itemsView.goToDetails(NavigateWithBundle(name, date, imageView))
+    fun elementSelected(name: String, userName: String, nameCompany: String) {
+        itemsView.goToDetails(NavigateWithBundle(name, userName, nameCompany))
     }
 }
 
 data class NavigateWithBundle(
     val name: String,
-    val date: String,
-    val image: Int,
+    val userName: String,
+    val nameCompany: String,
 )

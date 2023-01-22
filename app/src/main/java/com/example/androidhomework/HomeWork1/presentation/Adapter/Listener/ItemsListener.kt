@@ -4,5 +4,5 @@ interface ItemsListener {
 
     fun onClick()
 
-    fun onElementSelected (name: String, date: String, imageView: Int)
+    fun onElementSelected (name: String, userName: String, nameCompany: String)
 }

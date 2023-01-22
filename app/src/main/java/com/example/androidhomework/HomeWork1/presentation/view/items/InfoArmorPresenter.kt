@@ -13,17 +13,20 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
         infoArmorView = infoArmorFragment
     }
 
-    fun getArguments(name: String?, date: String?, imageView: Int) {
+    fun getArguments(name: String, userName: String, nameCompany: String) {
         infoArmorView.displayItemDate(
-            when (name.isNullOrEmpty()) {
+            when (name.isEmpty()) {
                 true -> "NO DATA"
                 false -> name
             },
-            when (date.isNullOrEmpty()) {
+            when (userName.isEmpty()) {
                 true -> "NO DATE"
-                false -> date
+                false -> userName
             },
-            imageView
+            when (nameCompany.isEmpty()) {
+                true -> "NO DATE"
+                false -> nameCompany
+            }
         )
     }
 
@@ -31,7 +34,7 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
             try {
                 val job = launch {
                     authInteractor.logoutUser()
@@ -40,6 +43,7 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
+                Log.w("exception","logout user FAILED")
             }
         }
     }

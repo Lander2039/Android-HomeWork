@@ -20,7 +20,7 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
             try {
                 val job = launch {
                     authInteractor.loginUser(userName, userPassword)
@@ -29,6 +29,7 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
+                Log.w("exception","login user FAILED")
             }
         }
     }

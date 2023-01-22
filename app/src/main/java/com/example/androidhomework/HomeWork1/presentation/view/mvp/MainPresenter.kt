@@ -20,7 +20,7 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
             try {
                 val job = launch {
                     val doesUserExists = authInteractor.checkUserExists()
@@ -29,6 +29,7 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
+                Log.w("exception","Check User FAILED")
             }
         }
     }

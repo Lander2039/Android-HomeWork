@@ -1,46 +1,49 @@
 package com.example.androidhomework.HomeWork1.presentation.Adapter
 
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
 import com.example.androidhomework.R
+import com.example.androidhomework.databinding.ItemArmorBinding
 
 class ArmorVIewHolder(
-    private val view: View,
+    private val viewBinding: ItemArmorBinding,
     private val itemsListener: ItemsListener
-) : RecyclerView.ViewHolder(view) {
+) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(itemsArmor: ItemsArmor) {
-        val imageView = view.findViewById<ImageView>(R.id.iv_armor)
-        val name = view.findViewById<TextView>(R.id.tv_text)
-        val date = view.findViewById<TextView>(R.id.tv_date)
-        val change = view.findViewById<ImageView>(R.id.iv_change)
 
-        name.text = itemsArmor.nameArmor
-        imageView.setBackgroundResource(itemsArmor.image)
-        date.text = itemsArmor.descriptionArmor
-        change.setBackgroundResource(itemsArmor.change)
+        viewBinding.tvName.text = itemsArmor.name
+        viewBinding.tvUserName.text = itemsArmor.username
+        viewBinding.tvEmail.text = itemsArmor.email
+        viewBinding.tvBs.text = itemsArmor.bs
+        viewBinding.tvCatchPhrase.text = itemsArmor.catchPhrase
+        viewBinding.tvCity.text = itemsArmor.city
+        viewBinding.tvCompanyName.text = itemsArmor.companyName
+        viewBinding.tvGeoLat.text = itemsArmor.lat
+        viewBinding.tvGeoLng.text = itemsArmor.lng
+        viewBinding.tvStreet.text = itemsArmor.street
+        viewBinding.tvSuite.text = itemsArmor.suite
+        viewBinding.tvWebsite.text = itemsArmor.website
+        viewBinding.tvZipcode.text = itemsArmor.zipcode
+        viewBinding.tvPhone2.text = itemsArmor.phone
 
         var changeL = true
-
-        change.setOnClickListener {
+        viewBinding.ivChange.setOnClickListener {
             if (changeL) {
-                change.setBackgroundResource(R.drawable.change)
+                viewBinding.ivChange.setBackgroundResource(R.drawable.change)
                 changeL = false
             } else {
-                change.setBackgroundResource(R.drawable.change2)
+                viewBinding.ivChange.setBackgroundResource(R.drawable.change2)
                 changeL = true
             }
 
         }
         itemView.setOnClickListener {
             itemsListener.onElementSelected(
-                itemsArmor.nameArmor,
-                itemsArmor.descriptionArmor,
-                itemsArmor.image
+                itemsArmor.name,
+                itemsArmor.street,
+                itemsArmor.companyName
             )
         }
     }
