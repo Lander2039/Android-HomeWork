@@ -40,7 +40,8 @@ class ItemsRepositoryImpl @Inject constructor(
                             it.website,
                             it.company.name,
                             it.company.catchPhrase,
-                            it.company.bs)
+                            it.company.bs
+                            )
                         itemsDAO.insertItemsEntity(itemsEntity)
                     }
                 }

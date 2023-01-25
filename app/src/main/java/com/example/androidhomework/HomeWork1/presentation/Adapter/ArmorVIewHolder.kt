@@ -15,18 +15,18 @@ class ArmorVIewHolder(
 
         viewBinding.tvName.text = itemsArmor.name
         viewBinding.tvUserName.text = itemsArmor.username
-        viewBinding.tvEmail.text = itemsArmor.email
-        viewBinding.tvBs.text = itemsArmor.bs
-        viewBinding.tvCatchPhrase.text = itemsArmor.catchPhrase
-        viewBinding.tvCity.text = itemsArmor.city
+//        viewBinding.tvEmail.text = itemsArmor.email
+//        viewBinding.tvBs.text = itemsArmor.bs
+//        viewBinding.tvCatchPhrase.text = itemsArmor.catchPhrase
+//        viewBinding.tvCity.text = itemsArmor.city
         viewBinding.tvCompanyName.text = itemsArmor.companyName
-        viewBinding.tvGeoLat.text = itemsArmor.lat
-        viewBinding.tvGeoLng.text = itemsArmor.lng
+//        viewBinding.tvGeoLat.text = itemsArmor.lat
+//        viewBinding.tvGeoLng.text = itemsArmor.lng
         viewBinding.tvStreet.text = itemsArmor.street
-        viewBinding.tvSuite.text = itemsArmor.suite
-        viewBinding.tvWebsite.text = itemsArmor.website
-        viewBinding.tvZipcode.text = itemsArmor.zipcode
-        viewBinding.tvPhone2.text = itemsArmor.phone
+//        viewBinding.tvSuite.text = itemsArmor.suite
+//        viewBinding.tvWebsite.text = itemsArmor.website
+//        viewBinding.tvZipcode.text = itemsArmor.zipcode
+//        viewBinding.tvPhone2.text = itemsArmor.phone
 
         var changeL = true
         viewBinding.ivChange.setOnClickListener {
