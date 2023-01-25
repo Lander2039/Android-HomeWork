@@ -25,7 +25,8 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
             try {
                 val job = launch {
-                    val listItems = itemsInteractor.getDate3()
+                    itemsInteractor.getDate()
+                    val listItems = itemsInteractor.showData()
                     itemsView.dataReceived(listItems)
                 }
                 job.join()

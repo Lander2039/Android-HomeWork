@@ -5,7 +5,11 @@ import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
 
-    suspend fun getDate3(): List<ItemsArmor>{
-        return  itemsRepository.getDate2()
+    suspend fun getDate() {
+        return itemsRepository.getDate()
+    }
+
+    suspend fun showData(): List<ItemsArmor> {
+        return itemsRepository.showData()
     }
 }

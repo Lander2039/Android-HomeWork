@@ -29,7 +29,7 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
-                Log.w("exception","Check User FAILED")
+                Log.w("exception", "Check User FAILED")
             }
         }
     }

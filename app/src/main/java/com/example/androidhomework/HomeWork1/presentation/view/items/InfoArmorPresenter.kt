@@ -2,7 +2,10 @@ package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInteractor) {
@@ -43,7 +46,7 @@ class InfoArmorPresenter @Inject constructor(private val authInteractor: AuthInt
                 job.join()
                 job.cancel()
             } catch (e: Exception) {
-                Log.w("exception","logout user FAILED")
+                Log.w("exception", "logout user FAILED")
             }
         }
     }

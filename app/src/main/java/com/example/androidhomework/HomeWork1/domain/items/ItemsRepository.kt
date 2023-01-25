@@ -4,5 +4,7 @@ import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
 
 interface ItemsRepository {
 
-    suspend fun getDate2(): List<ItemsArmor>
+    suspend fun getDate()
+
+    suspend fun showData(): List<ItemsArmor>
 }
