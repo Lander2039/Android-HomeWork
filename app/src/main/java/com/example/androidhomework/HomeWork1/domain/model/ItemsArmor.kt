@@ -1,4 +1,4 @@
-package com.example.androidhomework.HomeWork1.domain.Armor
+package com.example.androidhomework.HomeWork1.domain.model
 
 data class ItemsArmor(
     val id: Int,
@@ -16,5 +16,4 @@ data class ItemsArmor(
     val companyName: String,
     val catchPhrase: String,
     val bs: String
-
 )

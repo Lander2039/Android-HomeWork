@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +14,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView {
 
-    private var _binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var mainPresenter: MainPresenter
@@ -23,13 +24,14 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-
-        setContentView(_binding!!.root)
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
 
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
+
+        binding.bottonNavigation.setupWithNavController(navController)
 
         mainPresenter.setView(this)
 

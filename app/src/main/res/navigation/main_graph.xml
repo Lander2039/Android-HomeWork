@@ -35,4 +35,14 @@
         android:name="com.example.androidhomework.HomeWork1.presentation.view.items.InfoArmorFragment"
         android:label="fragment_info_armor"
         tools:layout="@layout/fragment_info_armor" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.androidhomework.HomeWork1.presentation.view.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

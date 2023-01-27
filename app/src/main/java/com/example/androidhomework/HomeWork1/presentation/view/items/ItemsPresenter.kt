@@ -22,18 +22,18 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
-            try {
-                val job = launch {
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            val job = launch {
+                try {
                     itemsInteractor.getDate()
                     val listItems = itemsInteractor.showData()
                     itemsView.dataReceived(listItems)
+                } catch (e: Exception) {
+                    Log.w("exception", "Get Items FAILED")
                 }
-                job.join()
-                job.cancel()
-            } catch (e: Exception) {
-                Log.w("exception","Get Items FAILED")
             }
+            job.join()
+            job.cancel()
         }
     }
 
@@ -44,7 +44,43 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     fun elementSelected(name: String, userName: String, nameCompany: String) {
         itemsView.goToDetails(NavigateWithBundle(name, userName, nameCompany))
     }
+
+    fun onFavClicked(name: String) {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exceptionHandler called", exception.toString())
+        }
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            val job = launch {
+                try {
+                    itemsInteractor.onFavClicked(name)
+                } catch (e: Exception) {
+                    Log.w("exception", "onFav FAILED")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+    }
+
+    fun deleteItem(name: String){
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exceptionHandler called", exception.toString())
+        }
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            val job = launch {
+                try {
+                    itemsInteractor.deleteItemByDescription(name)
+                } catch (e: Exception) {
+                    Log.w("exception", "deleteItems FAILED")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+    }
 }
+
+
 
 data class NavigateWithBundle(
     val name: String,

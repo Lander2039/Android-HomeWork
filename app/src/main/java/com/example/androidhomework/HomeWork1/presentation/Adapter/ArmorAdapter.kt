@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
 import com.example.androidhomework.databinding.ItemArmorBinding
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androidhomework.HomeWork1.domain.Armor.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
@@ -49,7 +49,6 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
         viewBinding.resView.adapter = armorAdapter
 
         itemsPresenter.getItems()
-
     }
 
     override fun onClick() {
@@ -58,6 +57,18 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onElementSelected(name: String, userName: String, nameCompany: String) {
         itemsPresenter.elementSelected(name, userName, nameCompany)
+    }
+
+    override fun onDeleteClicked(name: String) {
+        itemsPresenter.deleteItem(name)
+    }
+
+    override fun onFavClicked(name: String) {
+        itemsPresenter.onFavClicked(name)
+    }
+
+    override fun deleteItem(name: String) {
+        itemsPresenter.deleteItem(name)
     }
 
     override fun dataReceived(list: List<ItemsArmor>) {

@@ -75,4 +75,7 @@
     <string name="zipcode">zipcode</string>
     <string name="geo_lat">geo.lat</string>
     <string name="geo_lng">geo.lng</string>
+    <string name="samurai_fragment">Samurai Fragment</string>
+    <string name="favorites_fragment">Favorites Fragment</string>
+    <string name="search">Search</string>
 </resources>
