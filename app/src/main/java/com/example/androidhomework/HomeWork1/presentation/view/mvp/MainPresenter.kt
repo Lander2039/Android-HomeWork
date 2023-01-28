@@ -1,6 +1,7 @@
 package com.example.androidhomework.HomeWork1.presentation.view.mvp
 
 import android.util.Log
+import androidx.navigation.NavDestination
 import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -32,5 +33,8 @@ class MainPresenter @Inject constructor(private val authInteractor: AuthInteract
                 Log.w("exception", "Check User FAILED")
             }
         }
+    }
+    fun destinationChanged(destination: NavDestination){
+        mainView.destinationChanged(destination)
     }
 }

@@ -3,25 +3,20 @@
 
     <item
         android:id="@+id/samuraiArmorFragment"
-        android:title="@string/samurai_fragment"
         android:icon="@drawable/spicok"
-        />
+        android:title="@string/samurai_fragment" />
     <item
         android:id="@+id/favoritesFragment"
-        android:title="@string/favorites_fragment"
         android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites_fragment"
         />
-
-    <item
-        android:id="@+id/infoArmorFragment"
-        android:title="@string/logout"
-        android:icon="@drawable/ic_logout"
-        />
-
     <item
         android:id="@+id/searchFragment"
-        android:title="@string/search"
         android:icon="@drawable/ic_search"
-        />
+        android:title="@string/search" />
+    <item
+        android:id="@+id/infoArmorFragment"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
 
 </menu>

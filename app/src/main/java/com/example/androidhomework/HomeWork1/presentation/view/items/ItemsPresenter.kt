@@ -62,7 +62,7 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         }
     }
 
-    fun deleteItem(name: String){
+    fun deleteItem(name: String) {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
@@ -79,7 +79,6 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
         }
     }
 }
-
 
 
 data class NavigateWithBundle(

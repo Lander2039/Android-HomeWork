@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/botton_navigation_menu"
-        android:alpha="0.7"
+        android:alpha="0.5"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
