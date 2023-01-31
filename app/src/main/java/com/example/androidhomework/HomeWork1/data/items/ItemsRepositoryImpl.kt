@@ -9,6 +9,8 @@ import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
@@ -25,7 +27,7 @@ class ItemsRepositoryImpl @Inject constructor(
                 Log.w("getData", "data not exists")
                 val response = apiService.getData()
 
-                response.body()?.let {
+                response.body()?.let { it ->
                     it.map {
                         val itemsEntity = ItemsEntity(
                             Random().nextInt(),
@@ -51,27 +53,29 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun showData(): List<ItemsArmor> {
+    override suspend fun showData(): Flow<List<ItemsArmor>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map {
-                ItemsArmor(
-                    Random().nextInt(),
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.phone,
-                    it.website,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+            itemsEntity.map { itemsList ->
+                itemsList.map {
+                    ItemsArmor(
+                        Random().nextInt(),
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.lat,
+                        it.lng,
+                        it.phone,
+                        it.website,
+                        it.companyName,
+                        it.catchPhrase,
+                        it.bs
+                    )
+                }
             }
         }
     }
@@ -129,28 +133,36 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFavorites(): List<FavoritesModel> {
+    override suspend fun getFavorites(): Flow<List<FavoritesModel>> {
         return withContext(Dispatchers.IO) {
             val favoritesEntity = itemsDAO.getFavoritesEntity()
-            favoritesEntity.map {
-                FavoritesModel(
-                    Random().nextInt(),
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.phone,
-                    it.website,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+            favoritesEntity.map { itemsFav ->
+                itemsFav.map {
+                    FavoritesModel(
+                        Random().nextInt(),
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.lat,
+                        it.lng,
+                        it.phone,
+                        it.website,
+                        it.companyName,
+                        it.catchPhrase,
+                        it.bs
+                    )
+                }
             }
+        }
+    }
+
+    override suspend fun deleteFavItemByDescription(name: String) {
+        withContext(Dispatchers.IO) {
+            itemsDAO.deleteFavItemEntityByDescription(name)
         }
     }
 }

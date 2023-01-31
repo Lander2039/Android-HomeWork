@@ -27,7 +27,9 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
                 try {
                     itemsInteractor.getDate()
                     val listItems = itemsInteractor.showData()
-                    itemsView.dataReceived(listItems)
+                    listItems.collect {
+                        itemsView.dataReceived(it)
+                    }
                 } catch (e: Exception) {
                     Log.w("exception", "Get Items FAILED")
                 }

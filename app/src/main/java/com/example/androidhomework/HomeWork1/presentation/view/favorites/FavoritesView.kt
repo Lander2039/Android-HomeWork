@@ -5,4 +5,6 @@ import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
 interface FavoritesView {
 
     fun getFavorites(List: List<FavoritesModel>)
+
+    fun deleteItem (name: String)
 }

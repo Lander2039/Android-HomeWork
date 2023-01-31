@@ -2,10 +2,12 @@ package com.example.androidhomework.HomeWork1.presentation.view.items.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
+import com.example.androidhomework.HomeWork1.presentation.view.items.adapter.listener.FavoritesListener
 import com.example.androidhomework.databinding.ItemFavoritesBinding
 
 class FavoritesViewHolder(
     private val viewBinding: ItemFavoritesBinding,
+    private val favoritesListener: FavoritesListener
 ) : RecyclerView.ViewHolder(viewBinding.root) {
     fun bind(favItems: FavoritesModel) {
         viewBinding.tvName.text = favItems.name
@@ -22,5 +24,12 @@ class FavoritesViewHolder(
         viewBinding.tvWebsite.text = favItems.website
         viewBinding.tvZipcode.text = favItems.zipcode
         viewBinding.tvPhone2.text = favItems.phone
+
+
+        viewBinding.ivDelete.setOnClickListener {
+            favoritesListener.onDeleteClicked(favItems.name)
+        }
 }
+
+
 }

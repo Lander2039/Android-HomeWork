@@ -24,9 +24,28 @@ class FavoritesPresenter @Inject constructor(private val itemsInteractor: ItemsI
             val job = launch {
                 try {
                     val favoritesItems = itemsInteractor.getFavorites()
-                    favoritesView.getFavorites(favoritesItems)
+                    favoritesItems.collect {
+                        favoritesView.getFavorites(it)
+                    }
                 } catch (e: Exception) {
                     Log.w("exception", "Get Items FAILED")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+    }
+
+    fun deleteFavItem(name: String) {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exceptionHandler called", exception.toString())
+        }
+        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
+            val job = launch {
+                try {
+                    itemsInteractor.deleteFavItemByDescription(name)
+                } catch (e: Exception) {
+                    Log.w("exception", "delete favItem FAILED")
                 }
             }
             job.join()
