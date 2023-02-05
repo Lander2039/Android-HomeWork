@@ -4,6 +4,7 @@ import com.example.androidhomework.HomeWork1.domain.auth.AuthInteractor
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
 import com.example.androidhomework.HomeWork1.presentation.view.auth.HomePresenter
 import com.example.androidhomework.HomeWork1.presentation.view.auth.LoginPresenter
+import com.example.androidhomework.HomeWork1.presentation.view.favorites.FavoritesPresenter
 import com.example.androidhomework.HomeWork1.presentation.view.home.MainScreenPresenter
 import com.example.androidhomework.HomeWork1.presentation.view.items.InfoArmorPresenter
 import com.example.androidhomework.HomeWork1.presentation.view.items.ItemsPresenter
@@ -43,7 +44,11 @@ class PresenterModule {
     }
 
     @Provides
-    fun provideHomePresenter(authInteractor: AuthInteractor): HomePresenter {
-        return HomePresenter(authInteractor)
+    fun provideHomePresenter(authInteractor: AuthInteractor, itemsInteractor: ItemsInteractor): HomePresenter {
+        return HomePresenter(authInteractor, itemsInteractor)
+    }
+    @Provides
+    fun provideFavoritesPresenter(itemsInteractor: ItemsInteractor): FavoritesPresenter {
+        return FavoritesPresenter(itemsInteractor)
     }
 }

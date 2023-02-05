@@ -3,11 +3,12 @@ package com.example.androidhomework.HomeWork1.data.items
 import android.util.Log
 import com.example.androidhomework.HomeWork1.data.Service.ApiService
 import com.example.androidhomework.HomeWork1.data.database.FavoritesEntity
+import com.example.androidhomework.HomeWork1.data.database.HomeEntity
 import com.example.androidhomework.HomeWork1.data.database.ItemsEntity
 import com.example.androidhomework.HomeWork1.data.database.dao.ItemsDAO
+import com.example.androidhomework.HomeWork1.data.sharedPreferences.SharedPreferencesHelper
 import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
-import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
-import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
+import com.example.androidhomework.HomeWork1.domain.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 class ItemsRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    private val itemsDAO: ItemsDAO
+    private val itemsDAO: ItemsDAO,
+    private val sharedPreferencesHelper: SharedPreferencesHelper
 ) : ItemsRepository {
 
 
@@ -165,4 +167,27 @@ class ItemsRepositoryImpl @Inject constructor(
             itemsDAO.deleteFavItemEntityByDescription(name)
         }
     }
+
+    override suspend fun getHome(homeModel: HomeModel) {
+        withContext(Dispatchers.IO) {
+            itemsDAO.insertHomeEntity(
+                HomeEntity(
+                    homeModel.userName,
+                    homeModel.userPassword
+                )
+            )
+        }
+    }
+
+    override suspend fun getUserHome(): List<HomeModel>{
+        return withContext(Dispatchers.IO) {
+            val homeEntity = itemsDAO.getHomeEntity()
+            homeEntity.map {
+                    HomeModel(
+                        it.userName,
+                        it.userPassword
+                    )
+                }
+            }
+        }
 }
