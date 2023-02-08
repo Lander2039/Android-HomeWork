@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
@@ -17,6 +18,7 @@ import com.example.androidhomework.HomeWork1.utils.NavHelper.navigateWithBundle
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentSamuraiArmorBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 
@@ -48,7 +50,20 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
         viewBinding.resView.layoutManager = LinearLayoutManager(context)
         viewBinding.resView.adapter = armorAdapter
 
-        itemsPresenter.getItems()
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            itemsPresenter.getItems()
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            itemsPresenter.listItems.catch {
+                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+                .collect{ flowList ->
+                    flowList.collect{ list ->
+                        armorAdapter.submitList(list)
+                    }
+                }
+        }
     }
 
     override fun onClick() {

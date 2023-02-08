@@ -15,5 +15,6 @@ data class ItemsArmor(
     val website: String,
     val companyName: String,
     val catchPhrase: String,
-    val bs: String
+    val bs: String,
+    val favorite: Boolean
 )

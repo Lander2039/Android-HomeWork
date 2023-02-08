@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class ItemsEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo("id")
-    val id:Int,
+    val id: Int,
     @ColumnInfo("name")
     val name: String,
     @ColumnInfo("username")
@@ -36,5 +36,7 @@ data class ItemsEntity(
     @ColumnInfo("catchPhrase")
     val catchPhrase: String,
     @ColumnInfo("bs")
-    val bs: String
+    val bs: String,
+    @ColumnInfo("favorite")
+    val favorite: Boolean
 )

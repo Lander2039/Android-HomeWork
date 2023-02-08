@@ -1,7 +1,6 @@
 package com.example.androidhomework.HomeWork1.domain.items
 
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
-import com.example.androidhomework.HomeWork1.domain.model.HomeModel
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import kotlinx.coroutines.flow.Flow
 
@@ -21,8 +20,10 @@ interface ItemsRepository {
 
     suspend fun deleteFavItemByDescription(name: String)
 
-    suspend fun getHome(homeModel: HomeModel)
+    suspend fun favoritesDatabaseUpdate(favorite: Boolean, name: String)
 
-    suspend fun getUserHome(): List<HomeModel>
+//    suspend fun getHome(homeModel: HomeModel)
+//
+//    suspend fun getUserHome(): List<HomeModel>
 
 }

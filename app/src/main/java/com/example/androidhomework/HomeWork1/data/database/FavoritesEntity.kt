@@ -36,5 +36,7 @@ data class FavoritesEntity(
     @ColumnInfo("catchPhrase")
     val catchPhrase: String,
     @ColumnInfo("bs")
-    val bs: String
+    val bs: String,
+    @ColumnInfo("favorite")
+    val favorite: Boolean
 )

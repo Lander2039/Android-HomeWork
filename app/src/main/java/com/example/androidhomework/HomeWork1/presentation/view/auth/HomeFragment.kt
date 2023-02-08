@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.androidhomework.HomeWork1.domain.model.HomeModel
 import com.example.androidhomework.HomeWork1.domain.model.UserModel
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
@@ -38,7 +37,7 @@ class HomeFragment : Fragment(), HomeView {
 
         homePresenter.userCreds()
 
-        homePresenter.homeData()
+//        homePresenter.homeData()
 
 
         binding.btnLogout.setOnClickListener {
@@ -52,11 +51,11 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun showUserDate(userCreds: UserModel) {
         binding.tvUserCreds.text = buildString {
-        append(getString(R.string.welcome))
-        append(userCreds.userName)
-        append(getString(R.string.your_password))
-        append(userCreds.userPassword)
-    }
+            append(getString(R.string.welcome))
+            append(userCreds.userName)
+            append(getString(R.string.your_password))
+            append(userCreds.userPassword)
+        }
     }
 
     override fun userLogout() {
@@ -67,8 +66,8 @@ class HomeFragment : Fragment(), HomeView {
         replaceGraph(R.navigation.main_graph)
     }
 
-    override fun showHomeDate(homeData: List<HomeModel>) {
-        binding.tvHomeCreds.text = "$homeData"
-    }
+//    override fun showHomeDate(homeData: List<HomeModel>) {
+//        binding.tvHomeCreds.text = "$homeData"
+//    }
 
 }

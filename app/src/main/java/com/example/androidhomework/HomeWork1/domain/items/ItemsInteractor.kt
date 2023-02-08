@@ -1,7 +1,6 @@
 package com.example.androidhomework.HomeWork1.domain.items
 
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
-import com.example.androidhomework.HomeWork1.domain.model.HomeModel
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -27,7 +26,6 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
     suspend fun onFavClicked(name: String) {
         val foundItem = itemsRepository.findItemByDescription(name)
         itemsRepository.favClicked(foundItem)
-        itemsRepository.deleteItemByDescription(name)
     }
 
     suspend fun getFavorites(): Flow<List<FavoritesModel>> {
@@ -38,11 +36,15 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
         itemsRepository.deleteFavItemByDescription(name)
     }
 
-    suspend fun getHome(homeModel: HomeModel) {
-        return itemsRepository.getHome(homeModel)
+    suspend fun favoritesUpdate(favorite: Boolean, name: String){
+        return itemsRepository.favoritesDatabaseUpdate(favorite, name)
     }
 
-    suspend fun getUserHome(): List<HomeModel> {
-        return itemsRepository.getUserHome()
-    }
+//    suspend fun getHome(homeModel: HomeModel) {
+//        return itemsRepository.getHome(homeModel)
+//    }
+//
+//    suspend fun getUserHome(): List<HomeModel> {
+//        return itemsRepository.getUserHome()
+//    }
 }

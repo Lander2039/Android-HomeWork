@@ -50,6 +50,7 @@ class ArmorVIewHolder(
         }
 
         viewBinding.ivChange.setOnClickListener {
+            viewBinding.ivChange.isSelected = !it.isSelected
             itemsListener.onFavClicked(itemsArmor.name)
         }
     }

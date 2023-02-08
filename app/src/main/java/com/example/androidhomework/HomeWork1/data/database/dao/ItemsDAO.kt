@@ -19,7 +19,7 @@ interface ItemsDAO {
     fun getItemsEntities(): Flow<List<ItemsEntity>>
 
     @Query("SELECT (SELECT COUNT(*) FROM ItemsEntity) != 0")
-    fun doesItemsEntityExist(): Boolean
+    fun doesItemsEntityExist(): Flow<Boolean>
 
     @Query("DELETE FROM ItemsEntity WHERE name =:name")
     fun deleteItemEntityByDescription(name: String)
@@ -41,6 +41,9 @@ interface ItemsDAO {
 
     @Query("SELECT * FROM HomeEntity")
     fun getHomeEntity(): List<HomeEntity>
+
+    @Query("UPDATE ItemsEntity SET favorite =:favorite WHERE name =:name")
+    fun favoritesDatabaseUpdate(favorite: Boolean, name: String)
 
 
 }

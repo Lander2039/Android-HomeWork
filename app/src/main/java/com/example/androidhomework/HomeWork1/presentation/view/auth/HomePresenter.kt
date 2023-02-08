@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
-    private val authInteractor: AuthInteractor,
-    private val itemsInteractor: ItemsInteractor
+    private val authInteractor: AuthInteractor
 ) {
 
     private lateinit var homeView: HomeView
@@ -38,23 +37,23 @@ class HomePresenter @Inject constructor(
         }
     }
 
-    fun homeData() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exceptionHandler called", exception.toString())
-        }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
-            try {
-                val job = launch {
-                    val homeCreds = itemsInteractor.getUserHome()
-                    homeView.showHomeDate(homeCreds)
-                }
-                job.join()
-                job.cancel()
-            } catch (e: Exception) {
-                Log.w("exception", "User creds Error")
-            }
-        }
-    }
+//    fun homeData() {
+//        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+//            Log.w("exceptionHandler called", exception.toString())
+//        }
+//        CoroutineScope(coroutineExceptionHandler + Dispatchers.IO).launch {
+//            try {
+//                val job = launch {
+//                    val homeCreds = itemsInteractor.getUserHome()
+//                    homeView.showHomeDate(homeCreds)
+//                }
+//                job.join()
+//                job.cancel()
+//            } catch (e: Exception) {
+//                Log.w("exception", "User creds Error")
+//            }
+//        }
+//    }
 
 
     fun logoutUser() {

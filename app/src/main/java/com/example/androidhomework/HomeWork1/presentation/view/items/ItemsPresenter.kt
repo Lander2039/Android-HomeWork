@@ -2,10 +2,13 @@ package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
+import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.R
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,29 +17,14 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
 
     private lateinit var itemsView: ItemsView
 
+    val listItems = flow<Flow<List<ItemsArmor>>> { emit(itemsInteractor.showData()) }
+
     fun setView(context: ItemsView) {
         itemsView = context
     }
 
-    fun getItems() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exceptionHandler called", exception.toString())
-        }
-        CoroutineScope(coroutineExceptionHandler + Dispatchers.Main).launch {
-            val job = launch {
-                try {
-                    itemsInteractor.getDate()
-                    val listItems = itemsInteractor.showData()
-                    listItems.collect {
-                        itemsView.dataReceived(it)
-                    }
-                } catch (e: Exception) {
-                    Log.w("exception", "Get Items FAILED")
-                }
-            }
-            job.join()
-            job.cancel()
-        }
+    suspend fun getItems() {
+        itemsInteractor.getDate()
     }
 
     fun imageViewClicked() {
