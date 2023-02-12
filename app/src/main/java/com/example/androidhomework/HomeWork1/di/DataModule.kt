@@ -10,14 +10,11 @@ import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-@InstallIn(SingletonComponent::class)
+
 
 abstract class DataModule {
 
@@ -38,7 +35,7 @@ abstract class DataModule {
 
         @Provides
         fun provideSharedPreferences(
-            @ApplicationContext context: Context
+            context: Context
         ): SharedPreferencesHelper {
             return SharedPreferencesHelper(
                 context.getSharedPreferences(SP_KEY, Context.MODE_PRIVATE)
@@ -46,13 +43,13 @@ abstract class DataModule {
         }
 
         @Provides
-        fun provideRetrofitIml(retrofit: Retrofit): ApiService{
-            return  retrofit.create(ApiService::class.java)
+        fun provideRetrofitIml(retrofit: Retrofit): ApiService {
+            return retrofit.create(ApiService::class.java)
         }
 
         @Provides
-        fun provideRetrofitInstance(): Retrofit{
-            return  Retrofit.Builder()
+        fun provideRetrofitInstance(): Retrofit {
+            return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

@@ -1,10 +1,23 @@
 package com.example.androidhomework.HomeWork1
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.example.androidhomework.HomeWork1.di.AppModule
+import com.example.kotlinlesson.di.component.AppComponent
+import com.example.kotlinlesson.di.component.DaggerAppComponent
 
-@HiltAndroidApp
+
 class App : Application() {
+
+    lateinit var appComponent: AppComponent
+
+    fun provideAppComponent(): AppComponent {
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .build()
+        return appComponent
+    }
+}
 
 //    @Inject
 //    lateinit var workerFactory: HiltWorkerFactory
@@ -37,4 +50,4 @@ class App : Application() {
 //            repeatingRequest
 //        )
 //    }
-}
+//}

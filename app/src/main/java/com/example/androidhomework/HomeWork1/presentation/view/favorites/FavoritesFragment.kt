@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
 import com.example.androidhomework.HomeWork1.presentation.view.items.adapter.FavoritesAdapter
 import com.example.androidhomework.HomeWork1.presentation.view.items.adapter.listener.FavoritesListener
 import com.example.androidhomework.databinding.FragmentFavoritesBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class FavoritesFragment : Fragment(), FavoritesView, FavoritesListener {
 
     private var _binding: FragmentFavoritesBinding? = null
@@ -35,6 +35,7 @@ class FavoritesFragment : Fragment(), FavoritesView, FavoritesListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         favoritesPresenter.setView(this)
 
         favAdapter = FavoritesAdapter(this)

@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.domain.model.UserModel
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentHomeBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class HomeFragment : Fragment(), HomeView {
 
     private var _binding: FragmentHomeBinding? = null
@@ -33,6 +33,7 @@ class HomeFragment : Fragment(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         homePresenter.setView(this)
 
         homePresenter.userCreds()

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.HomeWork1.presentation.Adapter.ArmorAdapter
 import com.example.androidhomework.HomeWork1.presentation.Adapter.Listener.ItemsListener
@@ -17,12 +18,10 @@ import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigateWithBundle
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentSamuraiArmorBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var armorAdapter: ArmorAdapter
@@ -44,6 +43,7 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         itemsPresenter.setView(this)
 
         armorAdapter = ArmorAdapter(this)
@@ -58,8 +58,8 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
             itemsPresenter.listItems.catch {
                 Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
-                .collect{ flowList ->
-                    flowList.collect{ list ->
+                .collect { flowList ->
+                    flowList.collect { list ->
                         armorAdapter.submitList(list)
                     }
                 }
@@ -80,6 +80,10 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onFavClicked(name: String) {
         itemsPresenter.onFavClicked(name)
+    }
+
+    override fun updateFavorite(favorite: Boolean, name: String) {
+        itemsPresenter.updateFavorite(favorite,name)
     }
 
     override fun deleteItem(name: String) {

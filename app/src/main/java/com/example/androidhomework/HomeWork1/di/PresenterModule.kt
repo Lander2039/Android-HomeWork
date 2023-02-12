@@ -11,11 +11,8 @@ import com.example.androidhomework.HomeWork1.presentation.view.items.ItemsPresen
 import com.example.androidhomework.HomeWork1.presentation.view.mvp.MainPresenter
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
 class PresenterModule {
 
     @Provides
@@ -44,9 +41,12 @@ class PresenterModule {
     }
 
     @Provides
-    fun provideHomePresenter(authInteractor: AuthInteractor, itemsInteractor: ItemsInteractor): HomePresenter {
-        return HomePresenter(authInteractor, itemsInteractor)
+    fun provideHomePresenter(
+        authInteractor: AuthInteractor
+    ): HomePresenter {
+        return HomePresenter(authInteractor)
     }
+
     @Provides
     fun provideFavoritesPresenter(itemsInteractor: ItemsInteractor): FavoritesPresenter {
         return FavoritesPresenter(itemsInteractor)

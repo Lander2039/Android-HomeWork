@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentLoginBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class LoginFragment : Fragment(), LoginView {
 
     private var _viewBinding: FragmentLoginBinding? = null
@@ -31,6 +31,7 @@ class LoginFragment : Fragment(), LoginView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         loginPresenter.setView(this)
 
         viewBinding.btnLogin.setOnClickListener {

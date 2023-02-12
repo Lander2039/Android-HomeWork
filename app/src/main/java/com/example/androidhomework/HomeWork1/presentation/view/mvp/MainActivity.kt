@@ -8,12 +8,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+        (applicationContext as App).provideAppComponent().inject(this)
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController

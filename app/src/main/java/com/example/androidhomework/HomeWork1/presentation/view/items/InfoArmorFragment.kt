@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_DATE
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_IMAGEVIEW
 import com.example.androidhomework.HomeWork1.utils.BundleConstants.KEY_NAME
 import com.example.androidhomework.HomeWork1.utils.NavHelper.replaceGraph
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentInfoArmorBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class InfoArmorFragment : Fragment(), InfoArmorView {
 
     private var _viewBinding: FragmentInfoArmorBinding? = null
@@ -34,6 +34,7 @@ class InfoArmorFragment : Fragment(), InfoArmorView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         infoArmorPresenter.setView(this)
 
         val bundle = arguments

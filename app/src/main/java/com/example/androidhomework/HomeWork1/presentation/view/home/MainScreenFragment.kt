@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.androidhomework.HomeWork1.App
 import com.example.androidhomework.HomeWork1.utils.NavHelper.navigate
 import com.example.androidhomework.R
 import com.example.androidhomework.databinding.FragmentMainScreenBinding
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainScreenFragment : Fragment(), MainScreenView {
 
     private var _viewBinding: FragmentMainScreenBinding? = null
@@ -33,6 +33,7 @@ class MainScreenFragment : Fragment(), MainScreenView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         mainScreenPresenter.setView(this)
 
         mainScreenPresenter.startDialog()
