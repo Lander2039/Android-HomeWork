@@ -50,20 +50,8 @@ class SamuraiArmorFragment : Fragment(), ItemsListener, ItemsView {
         viewBinding.resView.layoutManager = LinearLayoutManager(context)
         viewBinding.resView.adapter = armorAdapter
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             itemsPresenter.getItems()
-        }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            itemsPresenter.listItems.catch {
-                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-                .collect { flowList ->
-                    flowList.collect { list ->
-                        armorAdapter.submitList(list)
-                    }
-                }
-        }
     }
 
     override fun onClick() {

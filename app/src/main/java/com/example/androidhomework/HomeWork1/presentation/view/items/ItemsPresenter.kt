@@ -2,13 +2,11 @@ package com.example.androidhomework.HomeWork1.presentation.view.items
 
 import android.util.Log
 import com.example.androidhomework.HomeWork1.domain.items.ItemsInteractor
-import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
 import com.example.androidhomework.R
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,14 +15,19 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
 
     private lateinit var itemsView: ItemsView
 
-    val listItems = flow<Flow<List<ItemsArmor>>> { emit(itemsInteractor.showData()) }
+    private val compositeDisposable = CompositeDisposable()
 
     fun setView(context: ItemsView) {
         itemsView = context
     }
 
-    suspend fun getItems() {
-        itemsInteractor.getDate()
+    fun getItems() {
+        val getData = itemsInteractor.getDate().subscribe({}, {})
+        compositeDisposable.add(getData)
+        val showData = itemsInteractor.showData().subscribe({
+            itemsView.dataReceived(it)
+        }, {})
+        compositeDisposable.add(showData)
     }
 
     fun imageViewClicked() {

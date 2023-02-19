@@ -1,5 +1,6 @@
 package com.example.androidhomework.HomeWork1.data.database.dao
 
+import androidx.databinding.ObservableBoolean
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -7,6 +8,7 @@ import androidx.room.Query
 import com.example.androidhomework.HomeWork1.data.database.FavoritesEntity
 import com.example.androidhomework.HomeWork1.data.database.HomeEntity
 import com.example.androidhomework.HomeWork1.data.database.ItemsEntity
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,10 +18,10 @@ interface ItemsDAO {
     fun insertItemsEntity(itemsEntity: ItemsEntity)
 
     @Query("SELECT * From ItemsEntity ")
-    fun getItemsEntities(): Flow<List<ItemsEntity>>
+    fun getItemsEntities(): Observable<List<ItemsEntity>>
 
     @Query("SELECT (SELECT COUNT(*) FROM ItemsEntity) != 0")
-    fun doesItemsEntityExist(): Flow<Boolean>
+    fun doesItemsEntityExist(): Observable<Boolean>
 
     @Query("DELETE FROM ItemsEntity WHERE name =:name")
     fun deleteItemEntityByDescription(name: String)

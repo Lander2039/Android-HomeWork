@@ -28,6 +28,7 @@ abstract class ItemsDatabase : RoomDatabase() {
                     ItemsDatabase::class.java,
                     "Items_DB"
                 )
+                .allowMainThreadQueries()
                 .build()
                 .also { DB_INSTANCE = it }
         }

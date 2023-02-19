@@ -2,13 +2,15 @@ package com.example.androidhomework.HomeWork1.domain.items
 
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
+import io.reactivex.Completable
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
 
-    suspend fun getDate()
+    fun getDate(): Completable
 
-    suspend fun showData(): Flow<List<ItemsArmor>>
+    fun showData(): Observable<List<ItemsArmor>>
 
     suspend fun deleteItemByDescription(name: String)
 

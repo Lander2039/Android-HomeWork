@@ -1,5 +1,6 @@
 package com.example.androidhomework.HomeWork1.data.items
 
+import android.util.Log
 import com.example.androidhomework.HomeWork1.data.Service.ApiService
 import com.example.androidhomework.HomeWork1.data.database.FavoritesEntity
 import com.example.androidhomework.HomeWork1.data.database.ItemsEntity
@@ -7,6 +8,10 @@ import com.example.androidhomework.HomeWork1.data.database.dao.ItemsDAO
 import com.example.androidhomework.HomeWork1.domain.items.ItemsRepository
 import com.example.androidhomework.HomeWork1.domain.model.FavoritesModel
 import com.example.androidhomework.HomeWork1.domain.model.ItemsArmor
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -19,45 +24,60 @@ class ItemsRepositoryImpl @Inject constructor(
     private val itemsDAO: ItemsDAO,
 ) : ItemsRepository {
 
+    private val compositeDisposable = CompositeDisposable()
 
-    override suspend fun getDate() {
-        return withContext(Dispatchers.IO) {
-            itemsDAO.doesItemsEntityExist().collect {
+    override fun getDate(): Completable {
+
+        return itemsDAO.doesItemsEntityExist()
+            .subscribeOn(Schedulers.io())
+            .doAfterNext {
                 if (!it) {
                     val response = apiService.getData()
-                    response.body()?.let { it ->
-                        it.map {
-                            val itemsEntity = ItemsEntity(
-                                Random().nextInt(),
-                                it.name,
-                                it.username,
-                                it.email,
-                                it.address.street,
-                                it.address.suite,
-                                it.address.city,
-                                it.address.zipcode,
-                                it.address.geo.lat,
-                                it.address.geo.lng,
-                                it.phone,
-                                it.website,
-                                it.company.name,
-                                it.company.catchPhrase,
-                                it.company.bs,
-                                it.favorite
-                            )
-                            itemsDAO.insertItemsEntity(itemsEntity)
+                    val getData = response.subscribeOn(Schedulers.io())
+                        .doAfterSuccess {
+                            it.forEach {
+                                val itemsEntity = ItemsEntity(
+                                    Random().nextInt(),
+                                    it.name,
+                                    it.username,
+                                    it.email,
+                                    it.address.street,
+                                    it.address.suite,
+                                    it.address.city,
+                                    it.address.zipcode,
+                                    it.address.geo.lat,
+                                    it.address.geo.lng,
+                                    it.phone,
+                                    it.website,
+                                    it.company.name,
+                                    it.company.catchPhrase,
+                                    it.company.bs,
+                                    it.favorite
+                                )
+                                itemsDAO.insertItemsEntity(itemsEntity)
+                            }
                         }
-                    }
+                        .doOnError {
+                            Log.w("error", "when making request")
+                        }
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+                    compositeDisposable.add(getData)
                 }
             }
-        }
+            .doOnComplete {
+                compositeDisposable.dispose()
+            }
+            .ignoreElements()
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override suspend fun showData(): Flow<List<ItemsArmor>> {
-        return withContext(Dispatchers.IO) {
-            val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map { itemsList ->
-                itemsList.map {
+    override fun showData(): io.reactivex.Observable<List<ItemsArmor>> {
+
+        val itemsEntity = itemsDAO.getItemsEntities()
+        return itemsEntity.subscribeOn(Schedulers.io())
+            .map {
+                it.map {
                     ItemsArmor(
                         Random().nextInt(),
                         it.name,
@@ -78,7 +98,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     )
                 }
             }
-        }
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override suspend fun deleteItemByDescription(name: String) {
@@ -170,7 +190,7 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun favoritesDatabaseUpdate (favorite: Boolean, name: String) {
+    override suspend fun favoritesDatabaseUpdate(favorite: Boolean, name: String) {
         return withContext(Dispatchers.IO) {
             itemsDAO.favoritesDatabaseUpdate(favorite, name)
         }
